@@ -10,7 +10,7 @@
 </div>
 
 <p align="center">
-  <img src="figures/intuition.png" width="96%" alt="Opus writes one fixed plan, and GPT-sol acts and receives feedback at each turn. With the same Opus planner, cost per success is $0.2265 with an Opus executor and $0.0530 with a GPT-sol executor.">
+  <img src="figures/intuition.png" width="96%" alt="Opus writes a plan at reset. GPT-sol reuses it while acting and receiving feedback at each turn, illustrated by finding, washing, and storing an apple.">
 </p>
 
 ## Overview
