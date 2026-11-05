@@ -49,7 +49,7 @@ In a separate experiment, agents exchange subgraphs of typed workflows. Matching
 
 ## Reproduce
 
-The released figures and results can be inspected without model access. The first command validates all matrix and search checksums, checks the recorded task totals, and prints the matched success–cost comparison. The other commands redraw the overview, the typed-crossover schematic, the role matrix, and the developmental search plots.
+The released figures and results can be inspected without model access. The first command validates all matrix and search checksums, checks the recorded task totals, and prints the matched success–cost comparison. The other commands redraw the typed-crossover schematic, the role matrix, and the developmental search plots. The illustrated overview is included as a PNG.
 
 ~~~bash
 git clone https://github.com/Hik289/Agent-species.git
@@ -59,7 +59,7 @@ python3 figure_code/audit_draft.py
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install matplotlib numpy
-python figure_code/build_intuition_figure.py
+python figure_code/build_typed_crossover_figure.py
 python figure_code/build_executor_matrix_figure.py
 python figure_code/build_evo_convergence_figure.py
 ~~~
