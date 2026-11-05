@@ -4,11 +4,9 @@
 Cross-model role exchange and interface compatibility in LLM agents</p>
 
 <p align="center">
-  <a href="#overview"><img alt="Method overview" src="https://img.shields.io/badge/Method-Role%20Exchange-6748A6.svg"></a>
-  <a href="#results"><img alt="ALFWorld results" src="https://img.shields.io/badge/Results-ALFWorld-2D61A3.svg"></a>
-  <a href="data/matrix_cells/"><img alt="Released data" src="https://img.shields.io/badge/Data-16%20Role%20Pairs-127768.svg"></a>
-  <a href="#reproduce"><img alt="Offline reproduction" src="https://img.shields.io/badge/Reproduce-Offline-936126.svg"></a>
-  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/License-MIT-2E7D32.svg"></a>
+  <a href="data/"><img alt="Data" src="https://img.shields.io/badge/Data-127768.svg"></a>
+  <a href="#reproduce"><img alt="Reproduce" src="https://img.shields.io/badge/Reproduce-2D61A3.svg"></a>
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/MIT%20License-56616E.svg"></a>
 </p>
 
 <p align="center">
