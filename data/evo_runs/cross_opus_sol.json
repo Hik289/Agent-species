@@ -1,0 +1,4491 @@
+{
+  "config": {
+    "models": [
+      "claude-opus-5",
+      "gpt-5.6-sol"
+    ],
+    "benchmarks": [
+      "alfworld"
+    ],
+    "alf_n": 8,
+    "he_n": 6,
+    "pb_n": 6,
+    "ab_n": 6,
+    "tau_n": 0,
+    "tau_domain": "retail",
+    "tau_user_model": "gpt-5.4-mini",
+    "prefilter": [],
+    "prefilter_threshold": 0.0,
+    "tau_haiku_only": false,
+    "comp_timeout": 1200,
+    "pop": 8,
+    "gens": 100,
+    "warm_start_from": null,
+    "comp_quota": 0.0,
+    "seed": 0,
+    "mu": 0.3,
+    "max_turns": 30,
+    "token_budget": 100000,
+    "benchmark_type": "agentic",
+    "repository_id": "N/A",
+    "tool_set_id": "N/A",
+    "budget": 3000.0,
+    "out": "./results/evo100_cross_opus_sol_search.json",
+    "tracker": "./results/evo100_cross_opus_sol_tracker.json"
+  },
+  "protocol": {
+    "max_turns": 30,
+    "token_budget": 100000,
+    "prompt_template_id": "baseline_v1",
+    "benchmark_type": "agentic",
+    "env_id": "benchmark_env_fixed",
+    "tool_api_id": "benchmark_tools_fixed",
+    "repository_id": "N/A",
+    "tool_set_id": "N/A",
+    "system_prompt_interactive": "You are an agent solving a task in an environment. Use the provided admissible actions/tools. Progress toward the goal.",
+    "system_prompt_static": "Solve the task. Follow the required output format exactly."
+  },
+  "benchmarks_used": [
+    "alfworld"
+  ],
+  "is_headline": false,
+  "tau_user_sim_model": "gpt-5.4-mini",
+  "fully_claude": false,
+  "run_label": "Claude-agent + gpt-5.4-mini-user-sim",
+  "generations": [
+    {
+      "gen": 0,
+      "pop_comp": 4,
+      "pop_single": 4,
+      "front": [
+        {
+          "sig": "debate solver_a=c-opus-5/react solver_b=c-opus-5/direct judge=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.75,
+          "cost": 2.964765,
+          "CoP": 0.494128
+        },
+        {
+          "sig": "single solver=gpt-5.6-sol/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "no_flagship",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.625,
+          "cost": 0.41058,
+          "CoP": 0.082116
+        }
+      ]
+    },
+    {
+      "gen": 1,
+      "pop_comp": 3,
+      "pop_single": 5,
+      "front": [
+        {
+          "sig": "single solver=gpt-5.6-sol/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "no_flagship",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.625,
+          "cost": 0.41058,
+          "CoP": 0.082116
+        },
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=gpt-5.6-sol/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "no_flagship",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.75,
+          "cost": 0.434997,
+          "CoP": 0.0725
+        }
+      ]
+    },
+    {
+      "gen": 2,
+      "pop_comp": 1,
+      "pop_single": 7,
+      "front": [
+        {
+          "sig": "single solver=gpt-5.6-sol/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "no_flagship",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.625,
+          "cost": 0.41058,
+          "CoP": 0.082116
+        },
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=gpt-5.6-sol/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "no_flagship",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.75,
+          "cost": 0.434997,
+          "CoP": 0.0725
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 1.95588,
+          "CoP": 0.279411
+        }
+      ]
+    },
+    {
+      "gen": 3,
+      "pop_comp": 2,
+      "pop_single": 6,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        }
+      ]
+    },
+    {
+      "gen": 4,
+      "pop_comp": 5,
+      "pop_single": 3,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/react executor=c-opus-5/direct",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        }
+      ]
+    },
+    {
+      "gen": 5,
+      "pop_comp": 5,
+      "pop_single": 3,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/react executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=gpt-5.6-sol/cot executor=gpt-5.6-sol/direct",
+          "cross_vendor": false,
+          "opus_role_pattern": "no_flagship",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.5,
+          "cost": 0.309003,
+          "CoP": 0.077251
+        },
+        {
+          "sig": "single solver=c-opus-5/direct",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        }
+      ]
+    },
+    {
+      "gen": 6,
+      "pop_comp": 5,
+      "pop_single": 3,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/react",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        }
+      ]
+    },
+    {
+      "gen": 7,
+      "pop_comp": 5,
+      "pop_single": 3,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/react",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        }
+      ]
+    },
+    {
+      "gen": 8,
+      "pop_comp": 5,
+      "pop_single": 3,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        }
+      ]
+    },
+    {
+      "gen": 9,
+      "pop_comp": 6,
+      "pop_single": 2,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/react executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.125,
+          "cost": 0.27216,
+          "CoP": 0.27216
+        }
+      ]
+    },
+    {
+      "gen": 10,
+      "pop_comp": 4,
+      "pop_single": 4,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=gpt-5.6-sol/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "no_flagship",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/direct",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        }
+      ]
+    },
+    {
+      "gen": 11,
+      "pop_comp": 3,
+      "pop_single": 5,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=gpt-5.6-sol/direct",
+          "cross_vendor": false,
+          "opus_role_pattern": "no_flagship",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=gpt-5.6-sol/react",
+          "cross_vendor": false,
+          "opus_role_pattern": "no_flagship",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        }
+      ]
+    },
+    {
+      "gen": 12,
+      "pop_comp": 5,
+      "pop_single": 3,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=gpt-5.6-sol/reflexion executor=c-opus-5/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_executor",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/direct",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/direct",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        }
+      ]
+    },
+    {
+      "gen": 13,
+      "pop_comp": 5,
+      "pop_single": 3,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/react executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.375,
+          "cost": 0.265645,
+          "CoP": 0.088548
+        },
+        {
+          "sig": "single solver=gpt-5.6-sol/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "no_flagship",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/direct",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        }
+      ]
+    },
+    {
+      "gen": 14,
+      "pop_comp": 6,
+      "pop_single": 2,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/direct",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/react",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        }
+      ]
+    },
+    {
+      "gen": 15,
+      "pop_comp": 7,
+      "pop_single": 1,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/cot",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.125,
+          "cost": 0.267768,
+          "CoP": 0.267768
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=gpt-5.6-sol/cot",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        }
+      ]
+    },
+    {
+      "gen": 16,
+      "pop_comp": 6,
+      "pop_single": 2,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=gpt-5.6-sol/direct executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "no_flagship",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.75,
+          "cost": 0.247608,
+          "CoP": 0.041268
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 1.0,
+          "cost": 1.60467,
+          "CoP": 0.200584
+        }
+      ]
+    },
+    {
+      "gen": 17,
+      "pop_comp": 7,
+      "pop_single": 1,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 1.0,
+          "cost": 1.49619,
+          "CoP": 0.187024
+        }
+      ]
+    },
+    {
+      "gen": 18,
+      "pop_comp": 7,
+      "pop_single": 1,
+      "front": [
+        {
+          "sig": "single solver=c-opus-5/cot",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": true,
+          "opus_role_pattern": "flagship_as_planner",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.875,
+          "cost": 0.328703,
+          "CoP": 0.046957
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "flagship_everywhere",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.0,
+          "cost": 0.0,
+          "CoP": null
+        },
+        {
+          "sig": "pipeline planner=gpt-5.6-sol/cot executor=gpt-5.6-sol/reflexion",
+          "cross_vendor": false,
+          "opus_role_pattern": "no_flagship",
+          "expensive_planner_cheap_executor": false,
+          "main_signal_evaluated": true,
+          "benchmarks_scored": [
+            "alfworld"
+          ],
+          "SR": 0.75,
+          "cost": 0.252132,
+          "CoP": 0.042022
+        }
+      ]
+    }
+  ],
+  "all_evaluated": [
+    {
+      "sig": "single solver=c-opus-5/react",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 3.295005,
+        "cost_of_pass": 0.549167,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 3.295005,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/react",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.625,
+        "total_passes": 5,
+        "total_tasks": 8,
+        "total_cost": 0.469452,
+        "cost_of_pass": 0.093891,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.625,
+            "passes": 5,
+            "n": 8,
+            "cost": 0.469452,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "router router=gpt-5.6-sol/direct coder=gpt-5.6-sol/reflexion planner=gpt-5.6-sol/react",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.625,
+        "total_passes": 5,
+        "total_tasks": 8,
+        "total_cost": 0.41202,
+        "cost_of_pass": 0.082404,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.625,
+            "passes": 5,
+            "n": 8,
+            "cost": 0.41202,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "router router=gpt-5.6-sol/cot coder=c-opus-5/react planner=c-opus-5/direct",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.625,
+        "total_passes": 5,
+        "total_tasks": 8,
+        "total_cost": 0.43398,
+        "cost_of_pass": 0.086796,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_mixed",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.625,
+            "passes": 5,
+            "n": 8,
+            "cost": 0.43398,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "debate solver_a=c-opus-5/react solver_b=c-opus-5/direct judge=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 2.964765,
+        "cost_of_pass": 0.494128,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 2.964765,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.625,
+        "total_passes": 5,
+        "total_tasks": 8,
+        "total_cost": 0.41058,
+        "cost_of_pass": 0.082116,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.625,
+            "passes": 5,
+            "n": 8,
+            "cost": 0.41058,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "debate solver_a=c-opus-5/reflexion solver_b=gpt-5.6-sol/react judge=c-opus-5/direct",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 3.208335,
+        "cost_of_pass": 0.534723,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 3.208335,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/direct",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.5,
+        "total_passes": 4,
+        "total_tasks": 8,
+        "total_cost": 0.4537,
+        "cost_of_pass": 0.113425,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.5,
+            "passes": 4,
+            "n": 8,
+            "cost": 0.4537,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/cot",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 0.450065,
+        "cost_of_pass": 0.075011,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 0.450065,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "debate solver_a=c-opus-5/react solver_b=gpt-5.6-sol/cot judge=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 3.1044,
+        "cost_of_pass": 0.5174,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 3.1044,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 0.434997,
+        "cost_of_pass": 0.0725,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 0.434997,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "debate solver_a=c-opus-5/react solver_b=c-opus-5/reflexion judge=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 2.956635,
+        "cost_of_pass": 0.492773,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 2.956635,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 3.702825,
+        "cost_of_pass": 0.617138,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 3.702825,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/direct",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.625,
+        "total_passes": 5,
+        "total_tasks": 8,
+        "total_cost": 0.436082,
+        "cost_of_pass": 0.087217,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.625,
+            "passes": 5,
+            "n": 8,
+            "cost": 0.436082,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/cot",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.875,
+        "total_passes": 7,
+        "total_tasks": 8,
+        "total_cost": 1.95588,
+        "cost_of_pass": 0.279411,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.875,
+            "passes": 7,
+            "n": 8,
+            "cost": 1.95588,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 3.656505,
+        "cost_of_pass": 0.609418,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 3.656505,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.625,
+        "total_passes": 5,
+        "total_tasks": 8,
+        "total_cost": 0.44374,
+        "cost_of_pass": 0.088748,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.625,
+            "passes": 5,
+            "n": 8,
+            "cost": 0.44374,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/react",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.625,
+        "total_passes": 5,
+        "total_tasks": 8,
+        "total_cost": 0.432705,
+        "cost_of_pass": 0.086541,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.625,
+            "passes": 5,
+            "n": 8,
+            "cost": 0.432705,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.875,
+        "total_passes": 7,
+        "total_tasks": 8,
+        "total_cost": 0.328703,
+        "cost_of_pass": 0.046957,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.875,
+            "passes": 7,
+            "n": 8,
+            "cost": 0.328703,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/cot",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 3.240735,
+        "cost_of_pass": 0.540122,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 3.240735,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.625,
+        "total_passes": 5,
+        "total_tasks": 8,
+        "total_cost": 0.43254,
+        "cost_of_pass": 0.086508,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.625,
+            "passes": 5,
+            "n": 8,
+            "cost": 0.43254,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 0.380805,
+        "cost_of_pass": 0.063467,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 0.380805,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/cot",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/cot",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/react executor=c-opus-5/direct",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/react executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=gpt-5.6-sol/cot executor=gpt-5.6-sol/direct",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.5,
+        "total_passes": 4,
+        "total_tasks": 8,
+        "total_cost": 0.309003,
+        "cost_of_pass": 0.077251,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.5,
+            "passes": 4,
+            "n": 8,
+            "cost": 0.309003,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/cot",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 0.459538,
+        "cost_of_pass": 0.07659,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 0.459538,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/direct",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/cot",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/react",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/direct",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.625,
+        "total_passes": 5,
+        "total_tasks": 8,
+        "total_cost": 0.459307,
+        "cost_of_pass": 0.091861,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.625,
+            "passes": 5,
+            "n": 8,
+            "cost": 0.459307,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.375,
+        "total_passes": 3,
+        "total_tasks": 8,
+        "total_cost": 0.357605,
+        "cost_of_pass": 0.119202,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.375,
+            "passes": 3,
+            "n": 8,
+            "cost": 0.357605,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/reflexion executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/react",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/cot",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.625,
+        "total_passes": 5,
+        "total_tasks": 8,
+        "total_cost": 0.426245,
+        "cost_of_pass": 0.085249,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.625,
+            "passes": 5,
+            "n": 8,
+            "cost": 0.426245,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/reflexion executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/cot",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/react executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/direct executor=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.125,
+        "total_passes": 1,
+        "total_tasks": 8,
+        "total_cost": 0.27216,
+        "cost_of_pass": 0.27216,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.125,
+            "passes": 1,
+            "n": 8,
+            "cost": 0.27216,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/cot",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/direct",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/direct",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/react",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/cot",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=gpt-5.6-sol/reflexion executor=c-opus-5/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_executor",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/direct",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/direct",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/reflexion executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/react executor=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.375,
+        "total_passes": 3,
+        "total_tasks": 8,
+        "total_cost": 0.265645,
+        "cost_of_pass": 0.088548,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.375,
+            "passes": 3,
+            "n": 8,
+            "cost": 0.265645,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=gpt-5.6-sol/cot",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/direct",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/direct executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/direct",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/react",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/reflexion executor=gpt-5.6-sol/cot",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/direct executor=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.125,
+        "total_passes": 1,
+        "total_tasks": 8,
+        "total_cost": 0.267768,
+        "cost_of_pass": 0.267768,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.125,
+            "passes": 1,
+            "n": 8,
+            "cost": 0.267768,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/cot executor=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.18915,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.18915,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/direct executor=gpt-5.6-sol/cot",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "single solver=c-opus-5/cot",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=gpt-5.6-sol/direct executor=gpt-5.6-sol/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.0,
+        "total_passes": 0,
+        "total_tasks": 8,
+        "total_cost": 0.0,
+        "cost_of_pass": null,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.0,
+            "passes": 0,
+            "n": 8,
+            "cost": 0.0,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/direct executor=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 0.247608,
+        "cost_of_pass": 0.041268,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 0.247608,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 1.0,
+        "total_passes": 8,
+        "total_tasks": 8,
+        "total_cost": 1.60467,
+        "cost_of_pass": 0.200584,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 1.0,
+            "passes": 8,
+            "n": 8,
+            "cost": 1.60467,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/direct executor=gpt-5.6-sol/direct",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.875,
+        "total_passes": 7,
+        "total_tasks": 8,
+        "total_cost": 0.358878,
+        "cost_of_pass": 0.051268,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.875,
+            "passes": 7,
+            "n": 8,
+            "cost": 0.358878,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 1.0,
+        "total_passes": 8,
+        "total_tasks": 8,
+        "total_cost": 1.49619,
+        "cost_of_pass": 0.187024,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 1.0,
+            "passes": 8,
+            "n": 8,
+            "cost": 1.49619,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/cot executor=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 0.423405,
+        "cost_of_pass": 0.070567,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 0.423405,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 1.0,
+        "total_passes": 8,
+        "total_tasks": 8,
+        "total_cost": 1.687635,
+        "cost_of_pass": 0.210954,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 1.0,
+            "passes": 8,
+            "n": 8,
+            "cost": 1.687635,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/direct executor=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 0.394105,
+        "cost_of_pass": 0.065684,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 0.394105,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=gpt-5.6-sol/cot executor=gpt-5.6-sol/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 0.252132,
+        "cost_of_pass": 0.042022,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "no_flagship",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 0.252132,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/direct executor=gpt-5.6-sol/reflexion",
+      "cross_vendor": true,
+      "fit": {
+        "success_rate": 0.75,
+        "total_passes": 6,
+        "total_tasks": 8,
+        "total_cost": 0.385302,
+        "cost_of_pass": 0.064217,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": true,
+        "hetero_model": true,
+        "opus_role_pattern": "flagship_as_planner",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.75,
+            "passes": 6,
+            "n": 8,
+            "cost": 0.385302,
+            "tier": "main"
+          }
+        }
+      }
+    },
+    {
+      "sig": "pipeline planner=c-opus-5/cot executor=c-opus-5/reflexion",
+      "cross_vendor": false,
+      "fit": {
+        "success_rate": 0.875,
+        "total_passes": 7,
+        "total_tasks": 8,
+        "total_cost": 2.214345,
+        "cost_of_pass": 0.316335,
+        "prefilter_sr": null,
+        "passed_prefilter": true,
+        "main_signal_evaluated": true,
+        "benchmarks_scored": [
+          "alfworld"
+        ],
+        "tau_quota_skipped": false,
+        "tau_haiku_only_comp": false,
+        "cross_vendor": false,
+        "hetero_model": false,
+        "opus_role_pattern": "flagship_everywhere",
+        "expensive_planner_cheap_executor": false,
+        "per_bench": {
+          "alfworld": {
+            "SR": 0.875,
+            "passes": 7,
+            "n": 8,
+            "cost": 2.214345,
+            "tier": "main"
+          }
+        }
+      }
+    }
+  ],
+  "samex_audit": {
+    "protocol": {
+      "max_turns": 30,
+      "token_budget": 100000,
+      "prompt_template_id": "baseline_v1",
+      "benchmark_type": "agentic",
+      "env_id": "benchmark_env_fixed",
+      "tool_api_id": "benchmark_tools_fixed",
+      "repository_id": "N/A",
+      "tool_set_id": "N/A",
+      "system_prompt_interactive": "You are an agent solving a task in an environment. Use the provided admissible actions/tools. Progress toward the goal.",
+      "system_prompt_static": "Solve the task. Follow the required output format exactly."
+    },
+    "n_compositions_audited": 85,
+    "distinct_signatures": [
+      "type=agentic env=benchmark_env_fixed max_turns=30 prompt=baseline_v1 repository=N/A token_budget=100000 tool_api=benchmark_tools_fixed"
+    ],
+    "constant": true
+  }
+}

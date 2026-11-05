@@ -1,0 +1,87 @@
+{
+  "raw_checks": {
+    "n250_opus_GPT": {
+      "n": 250,
+      "successes": 216,
+      "SR": 0.864,
+      "cost_sum": 13.20867,
+      "CoP_from_vectors": 0.06115125,
+      "SR_matches_summary": true,
+      "seen_n": 135,
+      "unseen_n": 115
+    },
+    "n250_opus_opus": {
+      "n": 250,
+      "successes": 238,
+      "SR": 0.952,
+      "cost_sum": 53.90698,
+      "CoP_from_vectors": 0.22649991596638655,
+      "SR_matches_summary": true,
+      "seen_n": 135,
+      "unseen_n": 115
+    },
+    "n250_opus_sonnet": {
+      "n": 250,
+      "successes": 221,
+      "SR": 0.884,
+      "cost_sum": 15.89762,
+      "CoP_from_vectors": 0.07193493212669683,
+      "SR_matches_summary": true,
+      "seen_n": 135,
+      "unseen_n": 115
+    },
+    "n250_single-GPT": {
+      "n": 250,
+      "successes": 158,
+      "SR": 0.632,
+      "cost_sum": 11.87773,
+      "CoP_from_vectors": 0.07517550632911392,
+      "SR_matches_summary": true,
+      "seen_n": 135,
+      "unseen_n": 115
+    },
+    "n250_single-opus": {
+      "n": 250,
+      "successes": 216,
+      "SR": 0.864,
+      "cost_sum": 58.13056,
+      "CoP_from_vectors": 0.26912296296296295,
+      "SR_matches_summary": true,
+      "seen_n": 135,
+      "unseen_n": 115
+    },
+    "n250_single-sonnet": {
+      "n": 250,
+      "successes": 195,
+      "SR": 0.78,
+      "cost_sum": 15.3544,
+      "CoP_from_vectors": 0.07874051282051282,
+      "SR_matches_summary": true,
+      "seen_n": 135,
+      "unseen_n": 115
+    }
+  },
+  "quartiles": [
+    {
+      "n": 62,
+      "single_successes": 62,
+      "composition_successes": 62
+    },
+    {
+      "n": 62,
+      "single_successes": 62,
+      "composition_successes": 62
+    },
+    {
+      "n": 62,
+      "single_successes": 62,
+      "composition_successes": 62
+    },
+    {
+      "n": 64,
+      "single_successes": 30,
+      "composition_successes": 52
+    }
+  ],
+  "notes": "Aggregate summaries from the archived evaluation. The release includes the matrix and search vectors. Single-agent vectors are separate from this archive."
+}

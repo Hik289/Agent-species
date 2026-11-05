@@ -1,0 +1,66 @@
+{
+  "n250_haiku_haiku.json": {
+    "path": "matrix_cells/n250_haiku_haiku.json",
+    "sha256": "2b3764b3da7cd1a43b36404a77ec79d97b793f98855299990aa0671018e697bf"
+  },
+  "n250_haiku_opus.json": {
+    "path": "matrix_cells/n250_haiku_opus.json",
+    "sha256": "6d20e30e41fe9a6fa904bbe73638a083f16b85a792af05cf54fe45f60b9ed7e9"
+  },
+  "n250_haiku_sol.json": {
+    "path": "matrix_cells/n250_haiku_sol.json",
+    "sha256": "f40db769f1788640427121349a7a508625f5f5c86db0810b22b3d2b5635031b6"
+  },
+  "n250_haiku_sonnet.json": {
+    "path": "matrix_cells/n250_haiku_sonnet.json",
+    "sha256": "d716d01a32a179d168552baedfbd3991c16cd50a1606924f0697699c6e16bd9d"
+  },
+  "n250_opus_haiku.json": {
+    "path": "matrix_cells/n250_opus_haiku.json",
+    "sha256": "3be8060c79e0d0bbbd79e104a2bb2ed03e110f31d912c3fdf748a1aaffde2e7c"
+  },
+  "n250_opus_opus.json": {
+    "path": "matrix_cells/n250_opus_opus.json",
+    "sha256": "e7774bc67484aae3c15b9a97362ba8eee238f1922565f9964540034d8f589eeb"
+  },
+  "n250_opus_sol.json": {
+    "path": "matrix_cells/n250_opus_sol.json",
+    "sha256": "6ac69472ed34d51137ee28fbf2a85316e235ab33f43d189afc1b35cbaf143b4b"
+  },
+  "n250_opus_sonnet.json": {
+    "path": "matrix_cells/n250_opus_sonnet.json",
+    "sha256": "d7d16814af66ea64d80fa9e832bc5dd2b3412bedc8bb512f11c1a1fde1b7cd95"
+  },
+  "n250_sol_haiku.json": {
+    "path": "matrix_cells/n250_sol_haiku.json",
+    "sha256": "5c3b84981e863a4cf5838a59b496d7da2eda6396a594543dace9259c74e18350"
+  },
+  "n250_sol_opus.json": {
+    "path": "matrix_cells/n250_sol_opus.json",
+    "sha256": "3d1691b84dd894c2c0dc7e973d08f72ae07e412a4fbadf3e17f86965ea3d74db"
+  },
+  "n250_sol_sol.json": {
+    "path": "matrix_cells/n250_sol_sol.json",
+    "sha256": "7f9f153a5dd10ebe2713ee0519175497ea1b2c657336eb952df2995d521fabf8"
+  },
+  "n250_sol_sonnet.json": {
+    "path": "matrix_cells/n250_sol_sonnet.json",
+    "sha256": "b7ec75670aef09ed67da18734170a86cf0e0e2edd5092df082bfb0e0ceb9a7fc"
+  },
+  "n250_sonnet_haiku.json": {
+    "path": "matrix_cells/n250_sonnet_haiku.json",
+    "sha256": "987dd1c027b8815e11a4a62950ed242e3f98e96abbae62b69ada4f515bc582d6"
+  },
+  "n250_sonnet_opus.json": {
+    "path": "matrix_cells/n250_sonnet_opus.json",
+    "sha256": "090827212c30587cf054f472539dee4dfde37002306ba7d6c5747da778ed1a05"
+  },
+  "n250_sonnet_sol.json": {
+    "path": "matrix_cells/n250_sonnet_sol.json",
+    "sha256": "9c2fda8a3c2917197bd53a0a56f76ce3e57df4636122210b2abd7ffc58052df5"
+  },
+  "n250_sonnet_sonnet.json": {
+    "path": "matrix_cells/n250_sonnet_sonnet.json",
+    "sha256": "cdb49e0393cfe5c0855a07576f95762e9996d8a2a294a539824d6c3cb93e1cc1"
+  }
+}

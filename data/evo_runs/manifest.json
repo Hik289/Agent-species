@@ -1,0 +1,22 @@
+{
+  "claudeonly": {
+    "path": "claudeonly.json",
+    "sha256": "e5c226fe40f5e9781f536ad169d118a563df044ac5b078502ba573d9bf80058d"
+  },
+  "cross_opus_sol": {
+    "path": "cross_opus_sol.json",
+    "sha256": "47fd9922811d7006ca1eff972da0a87c29f35f0560e7de8a1741103580c51c67"
+  },
+  "gptonly_v3": {
+    "path": "gptonly_v3.json",
+    "sha256": "89cb59b90f0c19bf7ca8dc21e3331df00ffcce392ad2d494d8e7104e60fa0de5"
+  },
+  "mixed": {
+    "path": "mixed.json",
+    "sha256": "007f59e93127010fb6937f450fb8d6e8b9642ebd85e9b422fd8ae95b4a692d7a"
+  },
+  "cross_haiku_sol": {
+    "path": "cross_haiku_sol.json",
+    "sha256": "df5606bc226c53422ef75f817a47c077e9bc6d04b9c498a07bd58b46aac8c355"
+  }
+}
