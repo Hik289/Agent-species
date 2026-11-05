@@ -1,13 +1,13 @@
-<h1 align="center">Agent Species</h1>
-
-<p align="center"><strong>Planning Once, Acting Repeatedly</strong><br>
-Cross-model role exchange and interface compatibility in LLM agents</p>
-
-<p align="center">
-  <a href="data/"><img alt="Data" src="https://img.shields.io/badge/Data-127768.svg"></a>
-  <a href="#reproduce"><img alt="Reproduce" src="https://img.shields.io/badge/Reproduce-2D61A3.svg"></a>
-  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/MIT%20License-56616E.svg"></a>
-</p>
+<div align="center">
+  <h1>Agent Species</h1>
+  <p>
+    <a href="data/"><img alt="Released data" src="https://img.shields.io/badge/Data-Released-b31b1b.svg"></a>
+    <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/License-MIT-green.svg"></a>
+    <a href="#reproduce"><img alt="Offline reproduction" src="https://img.shields.io/badge/Reproduce-Offline-3776AB.svg"></a>
+  </p>
+  <p><strong>Planning Once, Acting Repeatedly</strong><br>
+  Cross-model role exchange and interface compatibility in LLM agents</p>
+</div>
 
 <p align="center">
   <img src="figures/intuition.png" width="96%" alt="Opus writes one fixed plan, and GPT-sol acts and receives feedback at each turn. With the same Opus planner, cost per success is $0.2265 with an Opus executor and $0.0530 with a GPT-sol executor.">
