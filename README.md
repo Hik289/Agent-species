@@ -12,14 +12,14 @@ Cross-model role exchange and interface compatibility in LLM agents</p>
 </p>
 
 <p align="center">
-  <img src="figures/intuition.png" width="96%" alt="Swap models between planner and executor roles. The planner supplies one strategy per episode, and the executor uses a running history to act in ALFWorld. The selected held-out results compare success and cost. Development search and typed offspring are evaluated separately.">
+  <img src="figures/intuition.png" width="96%" alt="Opus writes one fixed plan, and GPT-sol acts and receives feedback at each turn. With the same Opus planner, cost per success is $0.2265 with an Opus executor and $0.0530 with a GPT-sol executor.">
 </p>
 
 ## Overview
 
 A planner can work once per episode. The executor must act, observe the outcome, and decide again. That asymmetry makes the assignment of models to roles a practical choice about both capability and cost.
 
-We cross four planner and executor endpoints in a shared [ALFWorld](https://alfworld.github.io/) harness. The planner supplies a strategy at reset, and the executor receives it together with recent action outcomes. Homogeneous pipelines and single-agent controls separate role assignment from the decision to use a two-stage scaffold. A separate line of experiments uses typed workflow crossover to study which interfaces allow offspring to execute.
+We cross four planner and executor endpoints in a shared [ALFWorld](https://alfworld.github.io/) harness. The planner supplies a strategy at reset, and the executor receives it together with recent action outcomes. Homogeneous pipelines and single-agent controls separate role assignment from the decision to use a two-stage scaffold. The [population study](#typed-population-study) tests which workflow interfaces allow offspring to execute after subgraph exchange.
 
 ## Results
 
@@ -39,9 +39,17 @@ All rows below are evaluated on the same **250 held-out ALFWorld tasks**. Cost i
 
 The [16-cell matrix](data/matrix_cells/) contains the recorded task vectors. The [aggregate record](data/final_audit.json) contains the single-agent summary and cost-stratum counts. The [five evolutionary search snapshots](data/evo_runs/) use an eight-task development panel and are reported separately from the held-out results.
 
+## Typed population study
+
+In a separate experiment, agents exchange subgraphs of typed workflows. Matching ports pass a strict interface check. A mismatched edge blocks the offspring from executing.
+
+<p align="center">
+  <img src="figures/typed_crossover.png" width="90%" alt="Two parent workflows have round or square ports. After subgraph exchange, offspring pass strict checking when the ports on each edge match. An edge with different port types is blocked.">
+</p>
+
 ## Reproduce
 
-The released figures and results can be inspected without model access. The first command validates all matrix and search checksums, checks the recorded task totals, and prints the matched success–cost comparison. The other commands redraw the overview, the role matrix, and the developmental search plots.
+The released figures and results can be inspected without model access. The first command validates all matrix and search checksums, checks the recorded task totals, and prints the matched success–cost comparison. The other commands redraw the overview, the typed-crossover schematic, the role matrix, and the developmental search plots.
 
 ~~~bash
 git clone https://github.com/Hik289/Agent-species.git
