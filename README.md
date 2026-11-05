@@ -4,15 +4,15 @@
 Cross-model role exchange and interface compatibility in LLM agents</p>
 
 <p align="center">
-  <a href="#overview"><img alt="Overview" src="https://img.shields.io/badge/Overview-243B53?style=for-the-badge"></a>
-  <a href="#results"><img alt="Results" src="https://img.shields.io/badge/Results-166C58?style=for-the-badge"></a>
-  <a href="#reproduce"><img alt="Reproduce" src="https://img.shields.io/badge/Reproduce-345B97?style=for-the-badge"></a>
-  <a href="#repository-map"><img alt="Code and data" src="https://img.shields.io/badge/Code%20%26%20Data-4B5472?style=for-the-badge"></a>
-  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/License-MIT-56616E?style=for-the-badge"></a>
+  <a href="#overview"><img alt="Method overview" src="https://img.shields.io/badge/Method-Role%20Exchange-6748A6.svg"></a>
+  <a href="#results"><img alt="ALFWorld results" src="https://img.shields.io/badge/Results-ALFWorld-2D61A3.svg"></a>
+  <a href="data/matrix_cells/"><img alt="Released data" src="https://img.shields.io/badge/Data-16%20Role%20Pairs-127768.svg"></a>
+  <a href="#reproduce"><img alt="Offline reproduction" src="https://img.shields.io/badge/Reproduce-Offline-936126.svg"></a>
+  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/License-MIT-2E7D32.svg"></a>
 </p>
 
 <p align="center">
-  <img src="figures/intuition.png" alt="A planner generates one strategy. The executor repeatedly exchanges actions and observations with an environment, retaining interaction history. A separate panel shows matching and mismatching types at workflow interfaces." width="950">
+  <img src="figures/intuition.png" width="96%" alt="Swap models between planner and executor roles. The planner supplies one strategy per episode, and the executor uses a running history to act in ALFWorld. The selected held-out results compare success and cost. Development search and typed offspring are evaluated separately.">
 </p>
 
 ## Overview
@@ -41,7 +41,7 @@ The [16-cell matrix](data/matrix_cells/) contains the recorded task vectors. The
 
 ## Reproduce
 
-The released figures and results can be inspected without model access. The first command validates all matrix and search checksums, checks the recorded task totals, and prints the matched success–cost comparison. The other commands redraw the matrix and developmental search plots.
+The released figures and results can be inspected without model access. The first command validates all matrix and search checksums, checks the recorded task totals, and prints the matched success–cost comparison. The other commands redraw the overview, the role matrix, and the developmental search plots.
 
 ~~~bash
 git clone https://github.com/Hik289/Agent-species.git
@@ -51,6 +51,7 @@ python3 figure_code/audit_draft.py
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install matplotlib numpy
+python figure_code/build_intuition_figure.py
 python figure_code/build_executor_matrix_figure.py
 python figure_code/build_evo_convergence_figure.py
 ~~~
