@@ -1,11 +1,10 @@
-"""S1 Ablation: per-bug-fix contribution (差距即 bug quantification) — 2026-10-14.
-Toggles each fix to measure its SR contribution:
-  config "baseline" = OLD BUGS (strat[:300]-style trunc + action-only history + blind parse)
-  config "mem"      = baseline + memory (history stores action=>obs)
-  config "mem_notrunc" = mem + de-truncation (full obs/history/admissible)
-  config "full"     = mem_notrunc + safe parse (ACTION format + 'look' fallback)
-Single-model (opus/sonnet) on held-out n. argv: <config> <model> <n>.
-"""
+"""Measure the effect of action history, full context, and command parsing.
+
+The baseline uses truncated context and action-only history. The mem setting
+adds action outcomes. mem_notrunc also keeps the full context. The full setting
+adds command parsing with a fallback action.
+
+Arguments are the setting, model, and task count."""
 import sys, json, math, re
 sys.path.insert(0, ".")
 from phase0.eval_harness import get_tasks, make_task

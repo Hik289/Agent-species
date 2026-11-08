@@ -1,4 +1,4 @@
-"""Draw the typed-crossover schematic."""
+"""Draw how agent parts are exchanged and their connections checked."""
 
 import argparse
 from pathlib import Path
@@ -86,11 +86,11 @@ def population():
         module(x, y, left, 1)
         module(x + 118, y, right, -1)
 
-    label(ax, 148, 36, "Parent workflows", 23, bold=True)
+    label(ax, 148, 36, "Parent agents", 23, bold=True)
     workflow(89, 93, "round", "round")
     workflow(89, 163, "square", "square")
 
-    label(ax, 425, 36, "Swap subgraphs", 23, bold=True)
+    label(ax, 425, 36, "Exchange parts", 23, bold=True)
     curve(ax, (251, 93), [((296, 93), (322, 97), (354, 126))], edge="#a28bb4")
     curve(ax, (251, 163), [((296, 163), (322, 159), (354, 130))], edge="#71a59a")
     arrow(ax, (379, 115), (473, 115), PLUM, bend=-0.20)
@@ -100,7 +100,7 @@ def population():
     arrow(ax, (567, 93), (581, 93), "#78918e")
     arrow(ax, (567, 163), (581, 163), "#78918e")
 
-    label(ax, 800, 36, "Offspring type check", 23, bold=True)
+    label(ax, 800, 36, "Check connections", 23, bold=True)
     workflow(620, 93, "round", "round")
     workflow(620, 163, "round", "square")
     circle(ax, 815, 93, 12, "#e4f2e9", TEAL, width=1)
@@ -108,8 +108,8 @@ def population():
     circle(ax, 815, 163, 12, "#f8e9e8", PINK, width=1)
     stroke(ax, [(811, 159), (819, 167)], PINK, width=1.25, z=6)
     stroke(ax, [(811, 167), (819, 159)], PINK, width=1.25, z=6)
-    label(ax, 838, 93, "Matching types", 19, color=TEAL, bold=True, align="left")
-    label(ax, 838, 163, "Type mismatch", 19, color=PINK, bold=True, align="left")
+    label(ax, 838, 93, "Types match", 19, color=TEAL, bold=True, align="left")
+    label(ax, 838, 163, "Types differ", 19, color=PINK, bold=True, align="left")
     return fig
 
 

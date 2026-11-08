@@ -1,29 +1,8 @@
-"""Path A — static OverClaim spectrum runner (orchestrator 2026-07-23, Option 1).
+"""Measure repair claims across different kinds of type mismatch.
 
-The HEADLINE confirmatory study: OverClaim as a function of injection tier (semantic
-distance), measured on injected genomes + 2-step repair-attempt. NO evolution needed —
-OverClaim is a static calibration property.
-
-Design:
-  3 tier {T1_cosmetic, T2_nearmiss, T3_genuine}
-  × 2 severity {3-edge, 7-edge}
-  × M random edge masks per severity
-  × S seeds
-  × K candidates per (tier × severity × mask × seed) cell
-
-Each candidate: mutate founder (random genome variation) → inject tier mismatch on the
-mask's edges → run 2-step repair-attempt + measure E/S/I/T per injected edge.
-
-Output JSONL (one record per candidate × edge):
-  {candidate_id, tier, severity, mask_id, mask_edges, seed, edge, E, S, I, I_conf,
-   over_claim_edge, task_q(None here), emit_type, consume_type}
-plus a candidate-level summary line (over_claim, es_agreement).
-
-Run:
-  python pathA_static_spectrum.py --tiers T1_cosmetic T2_nearmiss T3_genuine \
-    --severities 3 7 --masks 5 --seeds 101 102 103 104 105 --candidates 10 \
-    --out ./results/pathA_static_spectrum.jsonl
-"""
+Each test introduces mismatches into a founder-based agent, asks for a repair,
+and records the claim and measured result for each affected edge. Results are
+saved as JSONL records with the test settings and candidate summary."""
 from __future__ import annotations
 
 import argparse

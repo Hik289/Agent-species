@@ -1,11 +1,8 @@
-"""Group B — test-time confidence cascade on ALFWorld held-out (orchestrator/author 2026-08-16).
-Cascade: haiku attempts task; if it does NOT reach the goal, escalate to sonnet-4-6, then
-sonnet-5, then opus-5. Gate = "previous tier failed to reach goal" (uses only the env's own
-success signal at attempt end — NOT gold labels, NOT held-out peeking; the agent legitimately
-knows whether it reached the goal state during its own rollout). Cost = SUM of all tier attempts
-(fair: cascade pays for every tier it tries). Compare cascade cost-SR vs single-model baselines
-on the SAME held-out tasks (winner's-curse-safe: held-out ≠ selection set).
-"""
+"""Evaluate a sequence of models that retry tasks after a failure.
+
+Each model attempts the task in turn until the environment reports success
+or all models have been tried. Total cost includes every attempt. The runner
+compares these sequences with single-model agents on the held-out tasks."""
 import sys, json, math
 sys.path.insert(0, ".")
 from phase0.eval_harness import get_tasks, make_task

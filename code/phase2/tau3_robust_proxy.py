@@ -1,19 +1,8 @@
-"""Robust proxy-routing + None/429 retry wrapper for tau2 with user-configured provider endpoints.
+"""Route tau2 model calls to configured providers and retry failed requests.
 
-The Claude proxy is BURSTY: isolated paced calls succeed, but sustained multi-turn
-episodes accumulate rate_limit_error bursts. tau2's generate() sets num_retries and
-litellm can RETURN None (not raise) → tau2 crashes at response.choices[0]. This installs
-a completion wrapper that:
-  * routes claude-* → Anthropic, gpt-* → OpenAI, strips max_tokens for GPT
-  * paces calls (min gap) to avoid triggering bursts
-  * retries on None / 429 / overloaded / timeout with backoff
-  * NEVER returns None to tau2 (raises after exhausting retries)
-  * patches get_response_cost / get_response_usage to tolerate proxy-missing model/usage
-
-Usage (inside tau2_py312 subprocess, before running tasks):
-    from phase2.tau3_robust_proxy import install_robust_completion
-    install_robust_completion(min_gap=1.5, max_attempts=25)
-"""
+The wrapper spaces requests and retries empty responses, rate limits, overloads,
+and timeouts. It also handles responses that omit model or token-usage fields.
+After retries are exhausted, it raises an error."""
 from __future__ import annotations
 
 import os

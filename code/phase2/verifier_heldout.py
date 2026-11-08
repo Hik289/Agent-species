@@ -1,13 +1,8 @@
-"""Group C — generator + cheap-verifier self-repair on ALFWorld held-out (2026-10-11).
-Mechanism: at each turn, generator (opus-5/sonnet-5) proposes an ACTION; a CHEAP verifier
-(haiku) reviews "is this action sensible toward the goal given the observation?"; if the
-verifier flags it as bad, the generator REVISES once (bounded). All verifier (haiku) calls are
-counted in total cost (fair — no free verification). Compare gen+verifier SR/CoP vs the SAME
-generator ALONE (single), on the SAME held-out tasks (winner's-curse-safe).
+"""Test whether a second model can help an executor correct its actions.
 
-Honest expectation: haiku verifier may not catch opus's errors (weak-audits-strong) or may
-false-flag and add cost. Data decides. Reported with error bars whichever way.
-"""
+The executor proposes an action and a verifier reviews it. If the verifier
+rejects it, the executor can revise once. Spending includes both models.
+The comparison uses the same held-out tasks as the single-model agent."""
 import sys, json, math, re
 sys.path.insert(0, ".")
 from phase0.eval_harness import get_tasks, make_task

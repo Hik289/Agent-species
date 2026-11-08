@@ -1,11 +1,10 @@
-"""GAP1 — real interactive composition TOPOLOGIES at newest mechanism (de-truncation+memory).
-Not pipeline variants: genuinely different composition structures.
-  debate    : 2 solvers each propose next ACTION (with memory+full obs) -> judge picks
-  router    : router classifies state -> dispatches to one of {explorer, manipulator} executor
-  parallel  : k executors independently propose action -> majority vote (tie -> judge)
-All interactive on ALFWorld, full-context (no truncation), memory (action=>result history).
-argv: <topology> <n>
-"""
+"""Compare ways to coordinate model calls during ALFWorld tasks.
+
+Debate asks two models for actions and lets a judge choose. Routing selects
+an executor for the current state. Parallel execution votes on proposed
+actions. Each method uses full observations and action–outcome history.
+
+Arguments are the workflow name and task count."""
 import sys, json, math, re, collections
 sys.path.insert(0,".")
 from phase0.eval_harness import get_tasks, make_task

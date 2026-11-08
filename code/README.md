@@ -1,15 +1,19 @@
-# Experiment source
+# Experiment code
 
-For the dataset and runnable offline workflow, start at the [repository README](../README.md#reproduce).
+This folder contains the programs used to compare model combinations and evolve agent populations. To check saved results or redraw figures, follow the repository instructions. [Reproduce](../README.md#reproduce)
 
-| File | Role |
+The code calls an agent's saved setup a `genotype`. It records which model fills each role, how that role reasons and uses tools (`harness`), and how the roles connect (`topology`).
+
+| File | What it does |
 |:--|:--|
-| [`phase2/search.py`](phase2/search.py) | Search over role assignments, harnesses, and topologies |
-| [`phase2/genotype.py`](phase2/genotype.py) | Role representations and search operators |
-| [`phase2/pipeline_fix.py`](phase2/pipeline_fix.py) | Plan-once and replanning rollout controls |
-| [`phase2/topologies.py`](phase2/topologies.py) | Pipeline, routing, debate, and voting comparisons |
-| [`phase2/pf_n250.py`](phase2/pf_n250.py) | Fixed role-matrix cell evaluation |
-| [`exp1_cell3_v17.py`](exp1_cell3_v17.py) | Typed population experiment and offspring assays |
-| [`llm_client.py`](llm_client.py) | Client adapters, retry handling, and token accounting |
+| [`phase2/search.py`](phase2/search.py) | Searches for model choices, execution methods, and ways to connect roles |
+| [`phase2/genotype.py`](phase2/genotype.py) | Stores agent setups and changes or combines them during search |
+| [`phase2/pipeline_fix.py`](phase2/pipeline_fix.py) | Compares a fixed plan with plans updated during execution |
+| [`phase2/topologies.py`](phase2/topologies.py) | Compares planning followed by execution, routing, judging, and voting |
+| [`phase2/pf_n250.py`](phase2/pf_n250.py) | Runs a selected planner–executor pair on the task set |
+| [`exp1_cell3_v17.py`](exp1_cell3_v17.py) | Evolves agent populations and tests new agents made from parent parts |
+| [`llm_client.py`](llm_client.py) | Calls model APIs, retries failed requests, and tracks token use and cost |
 
-The source retains the experiment entry points from the archive. Live runs require their original supporting adapters, benchmark caches, compatible model endpoints, and the dependencies listed in [`requirements.txt`](requirements.txt). Model access and benchmark paths are configured locally using the names in [`.env.example`](../.env.example).
+Running the experiments requires the benchmark datasets, model API access, and the packages listed in the requirements file. Some older runners also import supporting modules outside this release, including `phase0`, `core`, and `niches`. [Requirements](requirements.txt)
+
+Set the environment variables needed for your run using the names in the example file. Model names in the saved logs are the identifiers used when those experiments ran. [.env.example](../.env.example)

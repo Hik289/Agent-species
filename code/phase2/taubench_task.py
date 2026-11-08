@@ -1,14 +1,7 @@
-"""τ³-bench task wrapper for the py3.11 harness (calls the py3.12 bridge subprocess).
+"""Wrap retail tasks through a separate tau2 Python process.
 
-A TauBenchTask is special: it does NOT run through the normal run_genotype_on_task (which
-uses our agent_exec). Instead it shells out to phase2/tau3_bridge_run.py in the tau2_py312
-env, passing the composition's agent model + harness, and reads BRIDGE_RESULT JSON
-(reward + cost). This keeps τ³ (py3.12) isolated from the main harness (py3.11).
-
-Because τ³ drives its OWN agent loop (with our HarnessAgent), the genotype's PRIMARY role
-model + harness are passed to the bridge. Topology beyond single is approximated by the
-primary role (τ³ is inherently a single tool-calling agent).
-"""
+The wrapper sends the primary model and execution method to tau3_bridge_run
+and reads the reward and cost from its BRIDGE_RESULT JSON record."""
 from __future__ import annotations
 
 import json

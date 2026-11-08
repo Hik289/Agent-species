@@ -1,8 +1,8 @@
-"""High-n held-out ALFWorld confirmation (orchestrator-approved, winner's-curse-safe).
-Selection set = first 5 alfworld tasks (search used these). Held-out = next 20 DISTINCT tasks.
-top-5 comp + top-5 single (single-group includes pooled-0.8 opus-5 singles) re-eval on held-out
-at n=20, symmetric. Report stable SR + error bars per genotype + group means.
-"""
+"""Re-evaluate selected single-model and multi-role agents on held-out tasks.
+
+The runner excludes the ALFWorld tasks used for selection and evaluates the
+selected agents on the next task set. It saves success and cost for each setup
+and summaries for the two groups."""
 import sys, json, math
 sys.path.insert(0, ".")
 from phase0.eval_harness import get_tasks, make_task

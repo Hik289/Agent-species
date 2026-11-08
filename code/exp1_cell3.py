@@ -1,16 +1,9 @@
-"""Exp 1 cell_3 — multi-niche SAET main run.
+"""Evolve agent populations across planning, memory, and other configured tasks.
 
-Per orchestrator Phase 3 directive (Sat 2026-06-20 13:56 UTC + niche availability decision):
-  - N=32, T=50, 1 seed (author reframe — 1 seed scope)
-  - K niches: PlanBench + LoCoMo (+ optional WebArena if docker unblocked + SWE-bench Lite if added)
-  - eval_every = 5 gens
-  - founder_v1 + λ_c = 0.5
-  - β = 2.0 (assortative mating per §6.3)
-  - Goal: detect ≥ 2 stable species (RII > 0.25, K_w-K_b > 0.20, persistence ≥ 10 gen)
-
-Niche fitness: each agent assigned a primary niche each generation (random with migration prob m=0.10),
-evaluated on that niche's task subset, fitness uses the niche-specific c_max for λ_c penalty.
-"""
+Each agent is assigned a task group. Selection uses task quality and API cost.
+At saved checkpoints, the runner exchanges parent parts and measures how well
+the resulting agents perform. Command-line options set the population, task
+groups, migration, evaluation schedule, and budget."""
 from __future__ import annotations
 
 import argparse
@@ -186,20 +179,11 @@ def pair_hybrid_viability(g1, g2, niche, llm_client, R=4, eval_tasks=3,
 
 
 def assign_niches(N, niches, t, m_migration, rng, population=None):
-    """Fix B (orchestrator 2026-06-26 17:10 UTC): task_focus-aware niche assignment.
+    """Assign task groups using migration and task focus.
 
-    Priority order per agent:
-      1. With prob m_migration → random niche (EST §7.5 ecological migration pressure)
-      2. Else if task_focus matches a known niche → that niche (specialist sticks)
-         - planning → planbench_blocksworld
-         - memory → locomo
-         - retrieval → hotpotqa
-      3. Else (task_focus="none" or unknown) → round-robin (i % K)
-
-    Lets specialists stably stay in matched niche (90% of time) so selection establishes
-    them; still applies 10% migration pressure to preserve multi-niche dynamics
-    (vs collapsing to 3 independent SAETs).
-    """
+    With the configured migration probability, choose a random group. Otherwise,
+    use the group matching the agent's task_focus, or distribute general agents
+    across groups in order."""
     K = len(niches)
     FOCUS_TO_NICHE = {
         "planning": "planbench_blocksworld",
@@ -225,7 +209,7 @@ def assign_niches(N, niches, t, m_migration, rng, population=None):
     return out
 
 
-# E2 Fix B (orchestrator 2026-06-26 17:07 UTC): task_focus-aware niche assignment.
+# Assign task groups using each agent's task_focus setting.
 # Specialist agents go to matched niche always; generalists round-robin.
 TASK_FOCUS_TO_NICHE = {
     "planning": "planbench_blocksworld",
@@ -235,12 +219,9 @@ TASK_FOCUS_TO_NICHE = {
 
 
 def assign_niches_task_focus(population, niches, m_migration, rng):
-    """Task_focus-aware niche assignment.
+    """Assign specialists to their matching task group.
 
-    Specialist agents (task_focus in {planning, memory, retrieval}) go to their
-    matched niche always (no migration). Generalists (task_focus='none') round-robin
-    among all niches with m_migration probability of random switch.
-    """
+    Agents without a specific task focus are distributed across task groups."""
     out = []
     gen_idx = 0
     for ag in population:
@@ -257,17 +238,10 @@ def assign_niches_task_focus(population, niches, m_migration, rng):
 
 
 def niche_bucket_select(combined, niches, N):
-    """Fix B' (orchestrator 2026-06-27 09:28 UTC): per-niche bucketed survivor selection.
+    """Select survivors within task groups, then fill any remaining slots.
 
-    combined: list of (agent_dict, fitness, assigned_niche) tuples (population + offspring).
-    niches: list of niche names (K=len(niches)).
-    N: target population size.
-
-    Returns N agents. Reserves N//K slots per niche (top-fitness within bucket); any
-    remainder + any niche-bucket shortfall filled by global top-F from remaining pool.
-
-    Prevents the v10 bug where global top-K let one specialist sweep all 32 slots.
-    """
+    Reserve an equal share of slots for each group and take its highest-scoring
+    agents. Fill empty slots with the best remaining agents across all groups."""
     K = len(niches)
     per_niche = N // K  # e.g. 32//3 = 10
     selected = []

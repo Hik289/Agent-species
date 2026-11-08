@@ -1,22 +1,8 @@
-"""Path A — T2 dynamic OverClaim trajectory (orchestrator 2026-07-23, Option 1 secondary).
+"""Track repair claims while a population adapts to a small type mismatch.
 
-Does the over-claim rate rise/fall as a population ADAPTS to a T2 near-miss mismatch?
-
-Static spectrum measures OverClaim at gen 0 (pre-adaptation). This measures how it
-evolves: run a soft-mode evolution on a T2-injected population; at each checkpoint,
-sample K candidates and measure OverClaim (2-step repair-attempt + E/S/I/T per edge).
-
-Lightweight evolution (no population-RCC — we only need OverClaim trajectory):
-  - N agents, all injected with T2 near-miss on the mask edges at gen 0
-  - each gen: soft task eval (drives selection) + mutate/crossover offspring
-  - at gen 0, 5, 10, ..., T: sample K survivors, measure repair-episode OverClaim
-
-Output JSONL: per candidate × edge × checkpoint, same schema as static + gen field.
-
-Run:
-  python pathA_dynamic_T2.py --severity 3 --mask-id 0 --seed 101 --N 12 --T 30 \
-    --eval-every 5 --k-measure 6 --out .../pathA_dynamic_T2.jsonl
-"""
+The runner introduces mismatches on selected edges, evolves the population,
+and samples survivors at checkpoints. For each repair attempt, it records
+whether the agent's success claim agrees with the measured outcome."""
 from __future__ import annotations
 
 import argparse

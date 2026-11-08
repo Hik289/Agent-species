@@ -1,8 +1,9 @@
-"""Single-genotype pipeline-fix runner (for parallel multi-process execution) — 2026-10-13.
-Runs ONE genotype on held-out n tasks, writes its own result file. Launch many in parallel
-(one process per genotype) for multi-worker speedup. Modes: A (de-truncate) / ABC (full fix).
-argv: <mode A|ABC> <genotype-name> <n>
-"""
+"""Evaluate one agent setup and write its results to a separate file.
+
+Mode A keeps the full plan. Mode ABC also updates the plan during execution
+and adds instructions for following it.
+
+Arguments are the mode, agent setup name, and task count."""
 import sys, json, math
 sys.path.insert(0, ".")
 from phase0.eval_harness import get_tasks, make_task

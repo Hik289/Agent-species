@@ -1,14 +1,8 @@
-"""PlanBench benchmark wrapper for Phase 2 (agentic, non-docker).
+"""Wrap PlanBench planning tasks for the agent evaluator.
 
-Static single-answer task: agent produces a PDDL plan for a blocksworld problem;
-VAL validates it deterministically (no LLM). Reuses Stage 1 planbench_eval helpers.
-
-Provides PlanBenchTask with the static-benchmark interface (kind="static"):
-  .prompt()  -> the natural-language planning query
-  .score(answer) -> 1 if VAL validates the parsed plan, else 0
-Same-X: the tool/env here = the fixed VAL validator + blocksworld domain (identical for
-all compositions); harness varies how the plan text is produced.
-"""
+The task asks for a PDDL plan for a Blocksworld problem. The VAL validator
+checks the plan. The wrapper exposes a prompt method and a scoring method
+for use by the shared evaluator."""
 from __future__ import annotations
 
 import os

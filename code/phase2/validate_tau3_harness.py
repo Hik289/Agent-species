@@ -1,21 +1,8 @@
-"""τ³ validation gate (orchestrator-specified). Run inside tau2_py312 subprocess.
+"""Check that the retail task setup and execution methods work.
 
-Gate criteria (ALL must pass before any headline re-run):
-  1. Reference sanity: tau2 native reference agent reward>0 on the test retail tasks
-     (confirms tasks solvable + reward-read correct).
-  2. Our NativeHarnessAgent: reward>0 on >=3-5 retail tasks across >=2 Claude tiers
-     (opus+haiku) AND >=2 harnesses (react+direct).
-  3. SR range sane (approaching published tau-bench ~0.3-0.6, not <0.1).
-  4. Harnesses DIFFER: react vs direct (vs reflexion/cot) produce different SR/behavior
-     (thesis requires harness to matter).
-
-Writes results to ./results/tau3_validation.json and prints a summary. Throttled via the
-robust proxy wrapper (bursty Claude proxy).
-
-Usage:
-  python validate_tau3_harness.py --tasks 5 --tiers claude-opus-4-8,claude-haiku-4-5-20251001 \
-      --harnesses react,direct,reflexion --min-gap 2.0 --reference
-"""
+The runner compares a reference agent with the configured methods and models.
+It records task rewards and checks whether the methods produce different
+outcomes. Results are saved to results/tau3_validation.json."""
 from __future__ import annotations
 
 import argparse

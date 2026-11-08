@@ -1,15 +1,8 @@
-"""Cross-vendor GPT×Claude pipeline on ALFWorld held-out (orchestrator/author 2026-10-11).
-Tests the complementarity hypothesis — the root cause of 7 prior failures was Claude single-family
-tier monotonicity (no complementarity). GPT+Claude MAY be complementary (solve different tasks).
+"""Compare GPT and Claude planner–executor pairs on held-out ALFWorld tasks.
 
-Matrix (pipeline planner->executor) + single baselines, held-out 20 tasks, winner's-curse-safe:
-  - GPT-planner  -> Claude-executor (opus-5 / sonnet-5 / haiku)
-  - Claude-planner (opus-5 / sonnet-5) -> GPT-executor
-  - same-vendor controls: GPT->GPT, Claude(opus-5)->Claude(sonnet-5)
-  - single baselines: gpt-5.5, claude-opus-5, claude-sonnet-5
-Cost is fair (both provider interfaces both counted via LLMClient per-model pricing).
-Also logs per-task solve vectors to measure GPT vs Claude COMPLEMENTARITY (task overlap).
-"""
+The runner evaluates both directions of each selected pair, pairs from the
+same provider, and single-model agents. It records task outcomes and costs
+from both roles so success, spending, and task overlap can be compared."""
 import sys, json, math
 sys.path.insert(0, ".")
 from phase0.eval_harness import get_tasks, make_task

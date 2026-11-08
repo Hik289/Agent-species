@@ -1,25 +1,11 @@
-"""Phase 0 agent executor: run a genotype on a benchmark task (orchestrator 2026-07-25).
+"""Run an agent setup on a benchmark task and record its success and API cost.
 
-Executes a composition genotype (roles→model/scaffold + topology) on one task via the
-local proxy (gpt-5.4-mini / gpt-5.4). Tracks cost. Returns success + $ spent for the
-Cost-of-Pass fitness.
+Supported execution methods are direct answers, chain-of-thought reasoning,
+ReAct action loops, and Reflexion retries. Supported workflows use a single
+model, a planner and executor, two proposals with a judge, or a router.
 
-Scaffolds:
-  direct    : one shot answer
-  cot       : chain-of-thought then answer
-  react     : Thought/Action loop over the task's action space (for ALFWorld-style envs)
-  reflexion : react + a self-reflection retry on failure
-
-Topologies:
-  single    : one solver role runs the scaffold
-  pipeline  : planner drafts a strategy, executor runs react with that strategy in context
-  debate    : two solvers propose, judge picks (for QA/coding-style single-answer tasks)
-  router    : router picks a specialist role to handle the task
-
-The benchmark provides an environment interface (see benchmark.py). For interactive envs
-(ALFWorld) the executor drives the react loop with admissible_commands. For static tasks
-(HumanEval/QA) the scaffold produces a single answer scored by the benchmark.
-"""
+Interactive tasks provide the available actions and observations. Static tasks
+score the final answer."""
 from __future__ import annotations
 
 import json

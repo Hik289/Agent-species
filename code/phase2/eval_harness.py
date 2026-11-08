@@ -1,14 +1,8 @@
-"""Phase 0 eval harness: Cost-of-Pass fitness over benchmarks (orchestrator 2026-07-25).
+"""Evaluate an agent setup on a collection of benchmark tasks.
 
-Evaluates a genotype (or baseline) on a set of tasks from pluggable benchmarks,
-returns success rate + total cost + Cost-of-Pass = cost / #passes (lower = better).
-
-Fitness (Cost-of-Pass): for a genotype g over N tasks,
-  passes = #tasks solved, cost = total $ spent
-  CoP = cost / max(passes, eps)   (dollars per solved task; ∞-ish if 0 passes)
-We report success_rate, total_cost, CoP, and a fitness = success_rate / (1 + cost_norm)
-option too. orchestrator's Cost-of-Pass is the primary.
-"""
+The evaluator records tasks solved, success rate, total cost, and cost per
+success. Cost per success divides total spending by the number of solved tasks.
+It also provides a score that combines task success and normalized cost."""
 from __future__ import annotations
 
 import argparse

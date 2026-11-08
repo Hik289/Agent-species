@@ -1,12 +1,7 @@
-"""tau3 single-model cross-vendor baselines (2026-10-12).
-Verifies the MECHANISM PREMISE of the ALFWorld cross-vendor cost-efficiency positive:
-is GPT a capable-AND-cheap executor on tau3 too (SR doesn't collapse + low cost)?
-NOTE: tau3 bridge uses only the PRIMARY role → cannot run true opus->GPT pipelines. So this runs
-SINGLE models only (single-GPT / single-opus / single-sonnet) via the bridge. It tests whether
-GPT's "cheap-but-capable" premise generalizes to tau3 — NOT the pipeline cost-efficiency itself
-(which is ALFWorld-verified; true pipeline needs an interactive-pipeline benchmark).
-Honest scope recorded in verdict.
-"""
+"""Compare single GPT and Claude agents on retail tasks.
+
+The bridge uses the setup's primary model and execution method. These runs
+measure single-agent success and cost on the retail benchmark."""
 import sys, json, math, random
 sys.path.insert(0, ".")
 from phase0.eval_harness import get_tasks, make_task

@@ -1,21 +1,8 @@
-"""Same-X fair-comparison protocol layer (author 2026-07-26).
+"""Keep task settings consistent across agent comparisons.
 
-Enforces IDENTICAL conditions across ALL compositions on 5 axes, so the ONLY things
-that vary are the evolved dimensions (role→model + harness + topology). This makes the
-comparison apples-to-apples EXCEPT for harness — which we deliberately let evolve (the
-novelty vs industry same-X, which also fixes harness).
-
-Fixed set (same-X):
-  1. same tools         — identical tool set exposed to every composition per benchmark
-  2. same prompt        — identical baseline task/system prompt template
-  3. same repository    — identical task environment / data (benchmark's own tasks, fixed seed)
-  4. same max_turns     — identical interaction-step cap
-  5. same token_budget  — identical per-task token allowance
-
-Harness is EXCLUDED from the fixed set (evolvable). The protocol object is passed to the
-agent executor; the executor MUST read max_turns / token_budget / prompt template / tools
-from it (not from the genotype), and we assert they are constant across a whole search.
-"""
+The protocol fixes the tools, task prompt, environment, turn limit, and token
+budget. Models, execution methods, and connections between roles may vary.
+SameXEnforcer checks the settings during a search."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field, asdict

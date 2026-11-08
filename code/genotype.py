@@ -1,29 +1,15 @@
-"""Phase 2 genotype: role→model + HARNESS + topology (author terminology, 2026-07-26).
+"""Store and modify an agent setup for model and workflow search.
 
-Terminology fix: the field formerly called "scaffold" is the **HARNESS** — the key
-evolvable dimension (react/cot/direct/reflexion/...). Industry fixes harness to compare
-models; our thesis is harness must CO-EVOLVE with model (cost-aware model×harness).
-
-Genotype:
-{
-  "roles": {"<role>": {"model": ..., "harness": ..., "params": {...}}, ...},
-  "topology": "single|pipeline|debate|router",
-  "topology_params": {...},
-  "_lineage_id": str,
-}
-
-Same-X fair-comparison fixed set (NOT in genotype — enforced by protocol layer):
-  same tools / same prompt template / same repository / same max_turns / same token_budget.
-Harness is DELIBERATELY EXCLUDED from the fixed set (that exclusion is the novelty).
-"""
+A setup records the model and execution method for each role, how the roles
+connect, and a lineage ID. Mutation changes these choices. Crossover combines
+choices from two parents. The task protocol sets tools, prompts, turn limits,
+and token budgets."""
 from __future__ import annotations
 
 import copy
 import random
 
-# Claude-only gene pool (author 2026-07-31): spans capability-cost gradient
-# haiku (cheap) → sonnet → opus-5 (flagship). Controls for vendor → cleaner model-tier
-# × harness isolation.
+# Claude model choices used by the search.
 MODELS = ["claude-haiku-4-5-20251001", "claude-sonnet-4-6", "claude-sonnet-5",
           "claude-opus-4-8", "claude-opus-5"]
 HARNESSES = ["direct", "cot", "react", "reflexion"]
@@ -160,9 +146,9 @@ def opus_role_pattern(g):
 
 
 def expensive_planner_cheap_executor(g):
-    """True iff a flagship-tier model is in a planner-like role AND a cheap-tier model in
-    an executor-like role (the discovered optimal cost-aware pattern:
-    flagship-plans / cheap-executes)."""
+    """Return whether an expensive model plans and a cheaper model executes.
+
+    Model groups and planner/executor roles are defined by this module."""
     roles = g["roles"]
     planner_expensive = any(_is_expensive(spec["model"]) for r, spec in roles.items()
                             if r in _PLANNER_ROLES)

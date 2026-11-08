@@ -1,19 +1,8 @@
-"""SAET evolutionary loop — minimum viable for M5 single-niche control + Exp 1 main.
+"""Evolve a population of agents and test how well their parts combine.
 
-SAET pseudocode. Single-LLM-call agent evaluation
-(per founder_v1: planner.depth=1, verifier.samples=1, replan=False), but supports
-mutation/crossover that can re-enable boost knobs per lineage.
-
-Components:
-  - SAETPopulation: holds agents (each is a MAG dict + id + lineage_seed)
-  - eval_agent(genome, niche): fitness q ∈ [0,1] via niches.* evaluator
-  - mutate(genome, mu): apply one of 8 mutation operators (per founder_v0 §3)
-  - typed_subgraph_crossover: from core/crossover.py
-  - select_parents (assortative-by-compat): per §6.3
-  - estimate_rcm: pairwise hybrid evaluation
-  - rcc_partition: spectral clustering on RCM
-  - run_saet(): main loop with checkpointing
-"""
+The loop evaluates agents on assigned tasks, selects parents, creates new
+agents by mutation or exchange, and saves checkpoints. At evaluation points
+it measures new agents from parent pairs and groups parents by those scores."""
 from __future__ import annotations
 
 import copy
@@ -30,14 +19,14 @@ import numpy as np
 from core import mag, crossover
 
 
-# H_diag_7 rigid interface check shared utility (orchestrator 2026-06-23 fix)
+# Module connections used by the rigid interface check.
 RIGID_TYPE_EDGES = [
     ('planner', 'workflow'),
     ('verifier', 'communication'),
     ('verifier', 'update_policy'),
 ]
 
-# E1 strict-all-edge check (orchestrator 2026-06-26): adjacent module pairs that have
+# Strict checks cover adjacent module pairs with
 # compatible types in founder_v2_typed. Used when mismatch_mode="rigid" AND agent is
 # cross-lineage hybrid. Only edges with matching pristine types are checked — the
 # others are "structural" (e.g., tools.out=tool_result NOT routed through verifier
@@ -82,9 +71,9 @@ def count_rigid_mismatches(genome):
 
 
 def check_strict_interface(genome):
-    """E1: ALL-edge interface check (orchestrator 2026-06-26).
-    Used in mismatch_mode='rigid' when agent is cross-lineage hybrid.
-    Return (ok, fail_reason)."""
+    """Check the required module connections for matching data types.
+
+    Return whether the check passed and the first failure reason, if any."""
     modules = genome.get('modules', {})
     for src, dst in STRICT_TYPE_EDGES:
         s_out = modules.get(src, {}).get('output_type')
@@ -445,7 +434,7 @@ def compute_rii(rcm: np.ndarray, labels: list[int]) -> dict[str, Any]:
 
 # ---------------- fitness with λ_c ----------------
 
-# E2 (orchestrator 2026-06-26): niche multiplier (task_focus × niche short key).
+# Map task group names to the keys used by the fitness multiplier.
 # Maps the long niche names used in exp1_cell3 to v3 schema short keys.
 NICHE_SHORT_KEY = {
     "planbench_blocksworld": "planbench",

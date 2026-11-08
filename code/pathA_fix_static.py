@@ -1,21 +1,8 @@
-"""Path A-fix static applied-repair spectrum (orchestrator 2026-07-24).
+"""Test proposed repairs after applying them to mismatched connections.
 
-Headline confirmatory run using the 3-phase applied-repair episode (repair_episode_v2).
-OverClaim = Pr(I=1, S=0) on the REPAIRED state, S deterministic.
-
-Matrix: 3 tier × 2 severity × M masks × S seeds × {blinded, labeled} × K candidates.
-Each candidate = one repair episode over the mask's injected edges (the "candidate"
-variation comes from LLM sampling + seed; genome is founder-based but the repair is what
-varies). Records per candidate × edge: op, transform, E, S, I, conf, over_claim.
-
-Cluster-robust note: resampling unit for CI is seed×severity (n≤10 per tier) — done in
-analysis, not here. Here we just emit all records with seed/mask/severity tags.
-
-Output JSONL. Run:
-  python pathA_fix_static.py --tiers T1_cosmetic T2_nearmiss T3_genuine \
-    --severities 3 7 --masks 3 --seeds 101 102 103 104 105 --candidates 6 \
-    --modes blinded labeled --out .../pathA_fix_static.jsonl
-"""
+The runner varies mismatch type, severity, edge selection, seed, and whether
+type names are visible. It saves each repair, the agent's success claim, and
+the result of an executable check as JSONL records."""
 from __future__ import annotations
 
 import argparse

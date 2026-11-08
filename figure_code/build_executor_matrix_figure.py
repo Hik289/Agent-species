@@ -1,9 +1,6 @@
 from pathlib import Path
 import os
-# Byte-reproducibility: matplotlib's PDF backend embeds a CreationDate from wall-clock
-# time by default, which makes PDF output non-byte-identical across runs even when all
-# plotted data and code are unchanged. Pin SOURCE_DATE_EPOCH so repeated runs of this
-# script produce byte-identical PDFs (verified: two consecutive runs -> identical md5).
+# Use a fixed PDF date so repeated runs produce the same files.
 os.environ.setdefault('SOURCE_DATE_EPOCH', '1700000000')
 import json
 import numpy as np
@@ -20,13 +17,10 @@ reported=np.array([[D[p,e]['SR'] for e in order] for p in order])
 seen=np.array([[D[p,e]['seen_SR'] for e in order] for p in order])
 ns=np.array([[D[p,e]['n'] for e in order] for p in order])
 
-# Reviewer3 W5 fix: in-figure legend for asterisk (n=135 cell) and bold (SR>0.9) markers
-# that were previously explained only in the caption text, not in the figure itself.
-# Colormap 'YlGnBu' (ColorBrewer sequential, perceptually uniform) is already CVD-safe
-# since it is a single-hue sequential ramp, not a red-green diverging scale.
+# Explain the task sets and text markers inside the figure.
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':8.5})
 fig,axes=plt.subplots(1,2,figsize=(7.0,3.55),constrained_layout=True)
-for ax,M,title in zip(axes,[reported,seen],['(a) Reported panels','(b) Matched seen slice (n=135 each)']):
+for ax,M,title in zip(axes,[reported,seen],["(a) Each run's task set", '(b) Same 135 tasks for every pair']):
     im=ax.imshow(M,vmin=.60,vmax=.96,cmap='YlGnBu',aspect='equal')
     for i in range(4):
         for j in range(4):
@@ -37,14 +31,14 @@ for ax,M,title in zip(axes,[reported,seen],['(a) Reported panels','(b) Matched s
     ax.set_xticks(range(4),labels,rotation=0,ha='center'); ax.set_yticks(range(4),labels)
     ax.set_xlabel('Executor'); ax.set_ylabel('Planner'); ax.set_title(title,weight='bold')
     ex=M.mean(0); pl=M.mean(1)
-    ax.text(.5,-.24,f'Executor range {np.ptp(ex):.3f}  |  Planner range {np.ptp(pl):.3f}',
-            transform=ax.transAxes,ha='center',fontsize=8)
+    ax.text(.5,-.26,f'Gap between best and worst role averages\nExecutors: {np.ptp(ex):.3f}  |  Planners: {np.ptp(pl):.3f}',
+            transform=ax.transAxes,ha='center',va='top',fontsize=8,linespacing=1.3)
 
 # In-figure legend explaining the asterisk and bold-text markers (panel a only, since
 # bold threshold and asterisk both apply there; panel b has no asterisks by construction)
-legend_text=('* = $n{=}135$ cell (seen-only panel; all others $n{=}250$)\n'
-             r'$\mathbf{bold}$ = success rate $>0.90$')
-axes[0].text(0.5,-0.42,legend_text,transform=axes[0].transAxes,ha='center',va='top',
+legend_text=('* = 135 seen tasks; all other cells = 250 tasks\n'
+             r'$\mathbf{bold}$ = success rate above 0.90')
+axes[0].text(0.5,-0.50,legend_text,transform=axes[0].transAxes,ha='center',va='top',
              fontsize=7.6,color='#333333',linespacing=1.5,
              bbox=dict(boxstyle='round,pad=0.3',facecolor='white',edgecolor='gray',alpha=0.95))
 

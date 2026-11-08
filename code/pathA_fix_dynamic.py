@@ -1,25 +1,7 @@
-"""Path A-fix dynamic convergence (orchestrator 2026-07-24, R2 fix: inject ONCE at gen0).
+"""Repeat repair tests with a fixed set of mismatched edges.
 
-Question: when the agent keeps FAILING to repair (deterministic S=0), does its over-claim
-converge (learn honesty) or persist/rise (stay confidently wrong)? Secondary finding.
-
-Design (R2 fix vs old): inject the tier mismatch ONCE at gen0. Do NOT re-inject each gen.
-Let a soft-mode population evolve; the repair episode is re-measured each checkpoint on
-the current genomes' injected edges. Since the v2 episode's mismatch/repair is defined by
-the edge+tier (not the evolving genome's type labels), we hold the injected substrate
-fixed at gen0 and track whether repeated repair attempts + selection change OverClaim.
-
-Simplification (faithful to the "does repair converge" question): we evolve a small
-population whose fitness = 1 - OverClaim (selection PRESSURES toward honest/correct repair)
-so we can observe whether the agent population can learn to stop over-claiming. Each
-candidate's repair is an independent v2 episode; we carry forward the best repair
-strategies via a lightweight bandit over {op, transform} per edge.
-
-Output JSONL: per gen × candidate × edge (op,E,S,I,conf,over_claim) + gen summary.
-Run:
-  python pathA_fix_dynamic.py --tier T2_nearmiss --severity 3 --mask-id 0 --seed 101 \
-    --N 8 --T 15 --eval-every 5 --blinded --out .../pathA_fix_dynamic_T2_s101.jsonl
-"""
+The mismatch is introduced at the start. Each later repair attempt is tested
+as an independent episode. The output records claimed and measured success at each checkpoint."""
 from __future__ import annotations
 
 import argparse

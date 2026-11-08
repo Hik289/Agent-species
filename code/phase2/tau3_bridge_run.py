@@ -1,17 +1,8 @@
-"""τ³-bench subprocess bridge runner (runs in tau2_py312 env).
+"""Run a retail task through the tau2 benchmark in a separate Python process.
 
-Called by the main py3.11 harness as a subprocess:
-  python tau3_bridge_run.py --domain retail --task-index 0 --agent-model gpt-5.4-mini \
-      --harness react --max-steps 20 --user-model gpt-5.4-mini
-Prints a single line: BRIDGE_RESULT: {"reward":..,"cost":..,"success":0/1}
-
-Routes ALL litellm calls (agent + user-sim) through our proxies (OpenAI-compatible and Anthropic-compatible endpoints)
-via the shared robust wrapper (None/429 retry, pacing, timeout). Uses the NATIVE
-function-calling NativeHarnessAgent (COMPARE 2026-08-01 proved the Claude proxy supports
-native FC) with the evolvable harness (react/cot/reflexion/direct) as a reasoning-scaffold.
-Reward = deterministic ENV mode (DB-state only, NO gpt-4.1 NL-assertion judge). Policy is
-delivered in the first user message (policy→user) to dodge the large-system-prompt 429.
-"""
+The bridge uses the configured model, execution method, task settings, and
+API client wrapper. It reports a BRIDGE_RESULT JSON record with reward, cost,
+and success. Reward is based on the environment's database state."""
 import sys, os, json, argparse
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

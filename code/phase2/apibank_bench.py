@@ -1,15 +1,8 @@
-"""API-Bank benchmark wrapper for Phase 2 (agentic tool-use, non-docker, local mock).
+"""Wrap API-Bank tasks for the agent evaluator.
 
-Level-3 stateful multi-turn tool dialogue. Each "task" = one API decision point: given
-the conversation history + available API descriptions, the agent (via harness) must
-output the correct next API call. Scored deterministically by parsing the call and
-comparing API name + params to ground truth (via API-Bank's evaluator + parse_api_call).
-
-Same-X: tool set (73 mock APIs) + prompt template + max_turns + token_budget FIXED
-(agentic type); harness varies how the call is produced.
-
-Reuses the API-Bank repo (configured via APIBANK_DATA) evaluator machinery.
-"""
+A task provides dialogue history and API descriptions. The agent predicts the
+next API call. The evaluator compares the API name and parameters with the
+expected call using API-Bank's local scoring code."""
 from __future__ import annotations
 
 import os

@@ -1,10 +1,9 @@
-"""Phase 2 Pareto search under same-X protocol (author 2026-07-26).
+"""Search for agent setups with useful combinations of success and cost.
 
-Evolves genotypes (role→model + HARNESS + topology) with cross-vendor gene pool, under
-the same-X fair-comparison protocol (5 fixed axes; harness/model/topology evolve).
-Fitness = Cost-of-Pass over the confirmed benchmark set. Tracks capability-cost Pareto
-frontier + flags cross-vendor vs single-vendor. Machine-checked fairness via SameXEnforcer.
-"""
+The search changes role models, execution methods, and workflow structure.
+It tracks candidates for which no other evaluated candidate is both at least
+as successful and at most as costly, with a strict improvement in one measure.
+All candidates use the shared task protocol."""
 from __future__ import annotations
 
 import argparse
@@ -48,14 +47,11 @@ def _atomic_write_json(path, obj):
 def evaluate_composition(genotype, bench_specs, client, protocol, enforcer, purpose,
                          prefilter_benchmarks=None, prefilter_threshold=0.0,
                          tau_haiku_only=False):
-    """Evaluate one genotype across benchmarks under same-X. Returns fitness dict.
+    """Evaluate an agent setup across the selected benchmarks.
 
-    TWO-TIER (orchestrator 2026-07-26): prefilter_benchmarks (cheap, static, deterministic:
-    HumanEval/PlanBench/API-Bank) run FIRST. If the composition's prefilter SR is below
-    prefilter_threshold, the expensive main-signal benchmarks (τ³/ALFWorld) are SKIPPED
-    (recorded as skipped_prefilter) — don't burn opus×τ³ on weak compositions. Provenance:
-    per_bench records which ran; skipped ones are explicit.
-    """
+    Optional screening tasks run first. If their success rate is below the
+    configured threshold, later benchmarks are skipped. The result records
+    which benchmarks ran and the success and cost on each."""
     enforcer.audit(genotype.get("_lineage_id", "?") + "|" + GT.genotype_signature(genotype))
     prefilter_set = set(prefilter_benchmarks or [])
     # order: prefilter benchmarks first, then main-signal
@@ -173,26 +169,20 @@ def main():
     ap.add_argument("--taubench-n", dest="tau_n", type=int, default=0)
     ap.add_argument("--tau-domain", dest="tau_domain", default="retail")
     ap.add_argument("--tau-user-model", dest="tau_user_model", default="gpt-5.4-mini",
-                    help="τ³ user-simulator model. gpt-5.4-mini (current) or "
-                         "claude-haiku-4-5-20251001 (authoritative fully-Claude).")
+                    help='Model used to simulate the retail customer.')
     ap.add_argument("--prefilter", nargs="+", default=[],
-                    help="benchmarks used as cheap pre-filter (e.g. humaneval planbench apibank); "
-                         "compositions below --prefilter-threshold SR skip main-signal (tau/alfworld)")
+                    help='Benchmarks to run first. Agents below the screening threshold skip the remaining benchmarks.')
     ap.add_argument("--prefilter-threshold", dest="prefilter_threshold", type=float, default=0.0)
     ap.add_argument("--tau-haiku-only", dest="tau_haiku_only", action="store_true",
-                    help="τ³ quota gate: only haiku-only comps run τ³ (opus/sonnet τ³ skipped+tagged "
-                         "to avoid proxy time-varying-429 corruption)")
+                    help='Run retail tasks only for agents whose roles all use Haiku.')
     ap.add_argument("--comp-timeout", dest="comp_timeout", type=int, default=1200,
-                    help="per-composition wall-clock cap (s); on timeout score 0 + continue "
-                         "(prevents 429-storm/hang from wedging the run)")
+                    help='Time limit in seconds for each agent evaluation. A timeout records zero success.')
     ap.add_argument("--pop", type=int, default=12)
     ap.add_argument("--gens", type=int, default=6)
     ap.add_argument("--warm-start-from", type=str, default=None,
-                    help="path to a prior run JSON; seeds initial pop from its final Pareto "
-                         "front (WARM-RESTART, not pure resume; gen counter resets)")
+                    help='Start a new search using the best setups from a saved run. The generation counter starts over.')
     ap.add_argument("--comp-quota", dest="comp_quota", type=float, default=0.0,
-                    help="min fraction of initial pop that are guaranteed multi-role compositions "
-                         "(orchestrator comp-exploration fix; e.g. 0.5 = >=half comps, applied all seeds)")
+                    help='Minimum share of the starting population that must use multiple roles.')
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--mu", type=float, default=0.3)
     ap.add_argument("--max-turns", dest="max_turns", type=int, default=30)
@@ -201,7 +191,7 @@ def main():
     ap.add_argument("--benchmark-type", dest="benchmark_type", default="agentic",
                     choices=["agentic", "coding"])
     ap.add_argument("--repository-id", dest="repository_id", default="N/A",
-                    help="coding same-X: fixed repository/task-set id (e.g. swe-lite-80)")
+                    help='Task-set identifier used for coding benchmark comparisons.')
     ap.add_argument("--tool-set-id", dest="tool_set_id", default="N/A",
                     help="coding same-X: fixed tool set id (e.g. swe-agent-tools-fixed)")
     ap.add_argument("--budget", type=float, default=1000.0)

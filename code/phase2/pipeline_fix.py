@@ -1,12 +1,8 @@
-"""Pipeline mechanism-fix experiment (差距即 bug) — 2026-10-12.
-Bug found: _pipeline_interactive truncates the planner's plan at strat[:300], cutting the
-completion steps (take/deliver), and never re-plans. Fixes:
-  A = no truncation (executor sees the FULL plan)
-  B = re-plan every REPLAN_EVERY turns (planner sees current obs, updates plan)
-  C = executor pure-execution prompt (follow the STRATEGY step, don't re-plan from scratch)
-Compares pipeline (opus->opus/sonnet/GPT) vs single baselines on the SAME held-out n=50 tasks.
-Mode via argv[1]: "A" or "ABC". Fair cost (both vendors), held-out, guard, TMPDIR=/data.
-"""
+"""Compare plan delivery and plan updates during interactive tasks.
+
+Setting A gives the executor the full plan. B asks the planner to update it
+at intervals. C adds instructions for following the current strategy. The
+runner records task outcomes and spending from both roles."""
 import sys, json, math
 sys.path.insert(0, ".")
 from phase0.eval_harness import get_tasks, make_task

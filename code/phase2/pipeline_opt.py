@@ -1,16 +1,9 @@
-"""Optimized pipeline: injection + retrieval (author 2026-10-14).
-Builds on the de-truncation + memory fix (which already lifted single 0.58->0.874, opus->opus
-0.941). Two optimizations to push composition past significance AND fix slowness (full-history
-token bloat):
-  INJECTION: plan is re-injected every turn with a STEP POINTER (which plan step is current) and
-             completed-step marking, so the executor always knows what to do next (not a stale
-             one-shot plan buried under history).
-  RETRIEVAL: instead of dumping full raw history (token bloat = slow), extract KEY FACTS (object
-             locations discovered, containers opened+empty) as a compact memory, plus the last
-             2 raw turns. This gives the executor the RELEVANT info for the current step at low
-             token cost (fixes slowness + improves SR by surfacing what matters).
-Mode A2 (optimized). argv: <genotype> <n>.
-"""
+"""Evaluate a plan-guided executor with shorter, focused memory.
+
+The executor receives the plan with a marker for its current step. Memory
+contains facts found during execution and recent interactions.
+
+Arguments are the agent setup name and task count."""
 import sys, json, math, re
 sys.path.insert(0, ".")
 from phase0.eval_harness import get_tasks, make_task

@@ -1,11 +1,7 @@
-"""Typed subgraph crossover (per the experimental design).
+"""Build a new agent by exchanging a connected part between two parents.
 
-M1 deliverable: skeleton implementation. Sanity-checked invariant for founder:
-  typed_subgraph_crossover(founder, founder) MUST equal founder (idempotency on identical parents).
-
-⚠️ This does NOT auto-repair semantic incompatibilities (per EST Thm 2 — interface boundary
-   is the carrier of lineage-specific HFL). Only syntax+type repair are applied.
-"""
+The exchange reconnects ports and applies syntax and type checks. Semantic
+compatibility is measured by the experiment after the exchange."""
 from __future__ import annotations
 
 import copy
@@ -40,8 +36,8 @@ def typed_subgraph_crossover(
     child = mag.reconnect_typed_ports(child)
     child = mag.syntax_fix(child)
     child = mag.type_check_fix(child)
-    # NO semantic_repair() — per the design spec and EST Thm 2
-    # E2 (orchestrator 2026-06-26): uniform 50/50 inherit top-level task_focus from parents
+    # Semantic compatibility is assessed after the exchange.
+    # Choose the child's task_focus from either parent with equal probability.
     if "task_focus" in G_A or "task_focus" in G_B:
         a_focus = G_A.get("task_focus", "none")
         b_focus = G_B.get("task_focus", "none")
@@ -54,17 +50,10 @@ def uniform_genome_crossover(
     G_B: dict[str, Any],
     rng: random.Random | None = None,
 ) -> dict[str, Any]:
-    """Exp 7C uniform crossover variant (orchestrator 2026-06-28 04:23 UTC).
+    """Choose each module from either parent with equal probability.
 
-    Per-module 50/50 random inherit from G_A or G_B. Each module's full content
-    (input_type, output_type, params, etc.) is taken atomically from one parent.
-
-    NO subgraph extraction, NO type-aware repair (uniform random — may produce
-    type-incompatible chimeras which rigid mode will catch).
-
-    For modules NOT in MODULE_KEYS (e.g. v2_typed extras like evidence_aggregator),
-    also 50/50 inherit.
-    """
+    Each choice copies the whole module, including its data types and parameters.
+    The resulting connections are checked later by the population evaluator."""
     import copy
     rng = rng or random.Random()
     # Start from a deep copy of G_A as scaffold (preserves top-level fields)

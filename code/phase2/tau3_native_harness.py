@@ -1,29 +1,8 @@
-"""τ³-bench (tau2) agent with NATIVE function-calling + evolved HARNESS dimension.
+"""Run a tau2 agent using the benchmark's native tool-calling interface.
 
-Replaces the earlier TEXT-tool HarnessAgent. COMPARE (2026-08-01) proved the Claude
-compatible provider endpoint fully supports native Anthropic function-calling, so the text-parse
-workaround (a GPT-era necessity) is unnecessary and less valid. Native function-calling
-is what τ³ was DESIGNED to measure.
-
-Design (orchestrator-approved):
-  * Subclass tau2's native LLMAgent → keeps native tool-calling via generate().
-  * The HARNESS gene (direct / cot / react / reflexion) is injected as a reasoning-
-    SCAFFOLD in the system prompt (+ small llm_args differences), so harness still
-    varies as an evolved dimension (positioning-A thesis intact) — but now over native
-    tools instead of text-parse.
-  * Same-X: tools + domain policy + max_steps FIXED by tau2; HARNESS is what varies.
-
-⚠️ The 4 harnesses MUST produce measurably DIFFERENT agent behavior on τ³ (verified via
-   scripts/verify_harness_differs.py) — otherwise "harness co-evolution" has nothing to
-   evolve on. Scaffolds are written to induce real behavioral differences:
-     - direct   : immediate action, no deliberation, terse
-     - cot      : explicit step-by-step reasoning in message content before acting
-     - react    : Thought→Action interleaving, verbalize state each step
-     - reflexion: self-critique after each tool result; on failure, diagnose then retry
-
-The robust None/429 retry wrapper is installed by the bridge (install_robust_completion)
-so tau2's generate() never receives None from the proxy.
-"""
+The agent supports direct answers, chain-of-thought reasoning, ReAct, and
+Reflexion. It keeps the task policy, tools, and step limit fixed across model
+choices. The bridge installs API retry handling before tasks run."""
 from __future__ import annotations
 
 from typing import List, Optional

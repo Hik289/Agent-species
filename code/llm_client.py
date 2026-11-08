@@ -1,13 +1,8 @@
-"""OpenAI-compatible gpt-5.4-mini client wrapper with rate-limit backoff + token tracking.
+"""Call model APIs with retries, token tracking, and spending limits.
 
-
-
-Usage:
-    from core.llm_client import LLMClient, BudgetExceeded
-    client = LLMClient(budget_usd_hard_cap=500.0, tracker_path="experiments/budget_tracker.json")
-    out = client.chat(messages=[{"role":"user","content":"hi"}], max_tokens=512)
-    print(client.summary())
-"""
+LLMClient records usage by model and purpose. BudgetExceeded stops a run when
+recorded spending exceeds its configured limit. API access is configured through
+local environment variables."""
 from __future__ import annotations
 
 import json

@@ -1,9 +1,7 @@
-"""Backfill ALFWorld (5 tasks) for specific haiku-only genotypes (orchestrator 2026-08-03).
+"""Evaluate saved Haiku agent setups on the ALFWorld task subset.
 
-Parses each genotype signature back to a genotype dict, runs it on ALFWorld under the same
-same-X protocol, and writes {sig: {SR, cost, passes, n}} so the haiku-tier full-20 frontier
-can be recomputed. haiku-only → quota-safe (no opus/sonnet multi-turn 429).
-"""
+The runner reads each saved setup, uses the shared task protocol, and writes
+task counts, successes, and costs for later comparison."""
 import sys, json, re, time
 sys.path.insert(0, ".")
 from phase2 import genotype as GT

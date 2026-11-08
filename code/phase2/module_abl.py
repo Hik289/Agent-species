@@ -1,11 +1,10 @@
-"""Module-intervention ablation (实验4 映射): isolate planner's contribution to composition.
-Configs on opus (ALFWorld held-out):
-  single     = single-opus (no planner at all) [reuse existing baseline]
-  noplan     = pipeline scaffold but planner outputs EMPTY plan (structure, no plan content)
-  fullplan   = normal opus->opus pipeline (planner gives real plan)
-Compares to measure: how much of composition's +0.088 is the planner's PLAN CONTENT vs just the
-two-stage structure. argv: <config> <n>
-"""
+"""Measure how plan content affects execution on ALFWorld.
+
+The single setting uses the saved single-Opus baseline. noplan uses a two-role
+workflow with an empty plan. fullplan uses an Opus planner and executor with
+the planner's strategy included.
+
+Arguments are the setting and task count."""
 import sys, json, math
 sys.path.insert(0,".")
 from phase0.eval_harness import get_tasks, make_task

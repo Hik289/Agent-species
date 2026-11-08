@@ -1,16 +1,8 @@
-"""Exp 1 cell_3 — multi-niche SAET main run.
+"""Run population experiments with configurable interface checks.
 
-Per orchestrator Phase 3 directive (Sat 2026-06-20 13:56 UTC + niche availability decision):
-  - N=32, T=50, 1 seed (author reframe — 1 seed scope)
-  - K niches: PlanBench + LoCoMo (+ optional WebArena if docker unblocked + SWE-bench Lite if added)
-  - eval_every = 5 gens
-  - founder_v1 + λ_c = 0.5
-  - β = 2.0 (assortative mating per §6.3)
-  - Goal: detect ≥ 2 stable species (RII > 0.25, K_w-K_b > 0.20, persistence ≥ 10 gen)
-
-Niche fitness: each agent assigned a primary niche each generation (random with migration prob m=0.10),
-evaluated on that niche's task subset, fitness uses the niche-specific c_max for λ_c penalty.
-"""
+The runner evaluates agents on their assigned tasks, selects parents, exchanges
+parts, and measures the performance of the new agents. Options control task
+groups, migration, mutation, founder agents, and how type mismatches are scored."""
 from __future__ import annotations
 
 import argparse
@@ -192,27 +184,11 @@ def _base_lineage(lid):
 
 def dual_verification_probe(population, niches, client, cost_model, niche_multiplier_table,
                              gen, seed, n_pairs=6, eval_tasks=2, soft_penalty=0.3):
-    """Matched dual verification-signal probe (orchestrator 2026-07-23 self-repair pivot).
+    """Compare type checks and task scores for the same new agents.
 
-    For the SAME set of cross-lineage hybrids, compute two independent 'repair success'
-    signals, so we can quantify the verification-reliability gap (survey pin #11):
-
-    - external_rii: MECHANISM-level (non-LLM) reproductive isolation. Fraction of
-      cross-lineage hybrids that FAIL check_strict_interface (genuine type
-      incompatibility). This is the 'external mechanism verification' — a hybrid that
-      fails the type check is NOT actually repaired, no matter what the LLM says.
-    - internal_soft_q / internal_task_fitness: the SAME hybrids evaluated under SOFT
-      prompt-adaptation (LLM allowed to reinterpret mismatched interface). soft_q>0
-      means the LLM produced acceptable task output → the LLM's own 'I repaired it'
-      signal.
-    - gap = external_rii - internal_soft_q. Large positive gap = LLM claims repair
-      (high soft_q) while mechanism says still-broken (high external_rii) → internal
-      self-verification is unreliable.
-
-    Mode-independent by construction: external uses saet.check_strict_interface directly
-    (no LLM, no global mode); internal temporarily forces _MISMATCH_MODE='soft' so the
-    LLM actually runs prompt-adaptation regardless of the arm's evolutionary mode.
-    """
+    The probe exchanges parts between lineages, records strict interface failures,
+    and evaluates the resulting agents with the soft mismatch setting. It saves
+    both measurements and their difference."""
     global _MISMATCH_MODE
     rng = random.Random(seed)
     # Enumerate candidate cross-lineage pairs (different base lineage)
@@ -289,20 +265,11 @@ def dual_verification_probe(population, niches, client, cost_model, niche_multip
 
 
 def assign_niches(N, niches, t, m_migration, rng, population=None):
-    """Fix B (orchestrator 2026-06-26 17:10 UTC): task_focus-aware niche assignment.
+    """Assign task groups using migration and task focus.
 
-    Priority order per agent:
-      1. With prob m_migration → random niche (EST §7.5 ecological migration pressure)
-      2. Else if task_focus matches a known niche → that niche (specialist sticks)
-         - planning → planbench_blocksworld
-         - memory → locomo
-         - retrieval → hotpotqa
-      3. Else (task_focus="none" or unknown) → round-robin (i % K)
-
-    Lets specialists stably stay in matched niche (90% of time) so selection establishes
-    them; still applies 10% migration pressure to preserve multi-niche dynamics
-    (vs collapsing to 3 independent SAETs).
-    """
+    With the configured migration probability, choose a random group. Otherwise,
+    use the group matching the agent's task_focus, or distribute general agents
+    across groups in order."""
     K = len(niches)
     FOCUS_TO_NICHE = {
         "planning": "planbench_blocksworld",
@@ -328,7 +295,7 @@ def assign_niches(N, niches, t, m_migration, rng, population=None):
     return out
 
 
-# E2 Fix B (orchestrator 2026-06-26 17:07 UTC): task_focus-aware niche assignment.
+# Assign task groups using each agent's task_focus setting.
 # Specialist agents go to matched niche always; generalists round-robin.
 TASK_FOCUS_TO_NICHE = {
     "planning": "planbench_blocksworld",
@@ -338,12 +305,9 @@ TASK_FOCUS_TO_NICHE = {
 
 
 def assign_niches_task_focus(population, niches, m_migration, rng):
-    """Task_focus-aware niche assignment.
+    """Assign specialists to their matching task group.
 
-    Specialist agents (task_focus in {planning, memory, retrieval}) go to their
-    matched niche always (no migration). Generalists (task_focus='none') round-robin
-    among all niches with m_migration probability of random switch.
-    """
+    Agents without a specific task focus are distributed across task groups."""
     out = []
     gen_idx = 0
     for ag in population:
@@ -360,17 +324,10 @@ def assign_niches_task_focus(population, niches, m_migration, rng):
 
 
 def niche_bucket_select(combined, niches, N):
-    """Fix B' (orchestrator 2026-06-27 09:28 UTC): per-niche bucketed survivor selection.
+    """Select survivors within task groups, then fill any remaining slots.
 
-    combined: list of (agent_dict, fitness, assigned_niche) tuples (population + offspring).
-    niches: list of niche names (K=len(niches)).
-    N: target population size.
-
-    Returns N agents. Reserves N//K slots per niche (top-fitness within bucket); any
-    remainder + any niche-bucket shortfall filled by global top-F from remaining pool.
-
-    Prevents the v10 bug where global top-K let one specialist sweep all 32 slots.
-    """
+    Reserve an equal share of slots for each group and take its highest-scoring
+    agents. Fill empty slots with the best remaining agents across all groups."""
     K = len(niches)
     per_niche = N // K  # e.g. 32//3 = 10
     selected = []
@@ -870,10 +827,8 @@ def main():
                          '(not just assigned niche). Cost: ~3x baseline per checkpoint. '
                          'Enables per-agent super-agent detection.')
     ap.add_argument("--dual-verification", dest='dual_verification', action='store_true',
-                    help='Self-repair pivot (orchestrator 2026-07-23): at each RCC checkpoint, '
-                         'log matched external(mechanism type-check) RII vs internal(LLM '
-                         'soft prompt-adaptation) task-fitness on the SAME cross-lineage '
-                         'hybrids. Stores verification_signals[gen_N] with gap=external-internal.')
+                    help='At each checkpoint, compare strict type checks with task scores '
+                         'for the same new agents. Save both measurements and their difference.')
     ap.add_argument("--dv-pairs", dest='dv_pairs', type=int, default=6,
                     help='Number of cross-lineage hybrid pairs to probe per checkpoint '
                          'for --dual-verification (default 6).')

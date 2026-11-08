@@ -1,29 +1,14 @@
-"""Phase 2 genotype: role→model + HARNESS + topology (author terminology, 2026-07-26).
+"""Store model choices, execution methods, and connections between roles.
 
-Terminology fix: the field formerly called "scaffold" is the **HARNESS** — the key
-evolvable dimension (react/cot/direct/reflexion/...). Industry fixes harness to compare
-models; our thesis is harness must CO-EVOLVE with model (cost-aware model×harness).
-
-Genotype:
-{
-  "roles": {"<role>": {"model": ..., "harness": ..., "params": {...}}, ...},
-  "topology": "single|pipeline|debate|router",
-  "topology_params": {...},
-  "_lineage_id": str,
-}
-
-Same-X fair-comparison fixed set (NOT in genotype — enforced by protocol layer):
-  same tools / same prompt template / same repository / same max_turns / same token_budget.
-Harness is DELIBERATELY EXCLUDED from the fixed set (that exclusion is the novelty).
-"""
+Each saved setup includes role settings, a workflow type, workflow parameters,
+and a lineage ID. Search can change these fields or combine them from parents.
+The shared task protocol controls tools, prompts, and evaluation budgets."""
 from __future__ import annotations
 
 import copy
 import random
 
-# Claude-only gene pool (author 2026-07-31): spans capability-cost gradient
-# haiku (cheap) → sonnet → opus-5 (flagship). Controls for vendor → cleaner model-tier
-# × harness isolation.
+# Claude model choices used by the search.
 MODELS = ["claude-haiku-4-5-20251001", "claude-sonnet-4-6", "claude-sonnet-5",
           "claude-opus-4-8", "claude-opus-5"]
 HARNESSES = ["direct", "cot", "react", "reflexion"]
@@ -60,9 +45,7 @@ def random_genotype(rng: random.Random, lineage_id="Grnd"):
     return g
 
 
-# multi-role (composition) topologies only — used to GUARANTEE composition exploration in
-# the initial population (orchestrator 2026-08-01: single-anchor seeding + small pop caused some
-# seeds to under-explore comps → unfair comp-vs-single Pareto). "single" excluded.
+# Use workflows with multiple roles when seeding that part of the population.
 _COMPOSITION_TOPOLOGIES = [t for t in TOPOLOGIES if t != "single"]
 
 
@@ -204,9 +187,9 @@ def opus_role_pattern(g):
 
 
 def expensive_planner_cheap_executor(g):
-    """True iff a flagship-tier model is in a planner-like role AND a cheap-tier model in
-    an executor-like role (the discovered optimal cost-aware pattern:
-    flagship-plans / cheap-executes)."""
+    """Return whether an expensive model plans and a cheaper model executes.
+
+    Model groups and planner/executor roles are defined by this module."""
     roles = g["roles"]
     planner_expensive = any(_is_expensive(spec["model"]) for r, spec in roles.items()
                             if r in _PLANNER_ROLES)

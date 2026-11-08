@@ -1,18 +1,8 @@
-"""Custom τ³-bench (tau2) HalfDuplexAgent with TEXT-based tool harness (author/orchestrator).
+"""Run a tau2 agent that requests tools through text commands.
 
-Runs INSIDE the tau2_py312 env (subprocess bridge). Implements a HalfDuplexAgent whose
-generate_next_message drives an LLM (routed to our proxy via litellm) with a HARNESS
-(react/cot/reflexion/direct) that parses tool calls from TEXT — bypassing native
-OpenAI function-calling (which the proxy doesn't support).
-
-The tools + domain policy + max_steps are FIXED by tau2 (same-X: same tool_api + env +
-prompt template + max_turns + token_budget); the HARNESS is the evolved dimension.
-
-Tool-call protocol (text): the agent outputs either
-  ACTION: <tool_name>(<json_args>)      → parsed into a ToolCall
-  RESPOND: <message to user>            → text content to the user
-We parse the LAST such directive in the LLM output.
-"""
+The agent reads the task policy and available tools. It parses the last
+ACTION directive as a tool call or the last RESPOND directive as a user reply.
+Execution methods control how the model reasons before choosing a command."""
 from __future__ import annotations
 
 import json

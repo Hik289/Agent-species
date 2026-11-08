@@ -1,7 +1,8 @@
-"""ScienceWorld pipeline runner — 2nd benchmark replication. opus->opus vs single-opus vs opus->haiku.
-Reuses pipeline_fix.run_pipeline_fixed / single via the ScienceWorldTask interface.
-argv: <genotype> <n>
-"""
+"""Compare single-model and planner–executor agents on ScienceWorld.
+
+The runner uses the shared execution code with the ScienceWorld task wrapper.
+
+Arguments are the agent setup name and task count."""
 import sys, json, math
 sys.path.insert(0,".")
 from phase0.scienceworld_bench import get_scienceworld_tasks, make_sw_task

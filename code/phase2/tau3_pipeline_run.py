@@ -1,12 +1,10 @@
-"""GAP3 — τ³ pipeline transfer: planner→executor on τ³ retail (external benchmark replication).
-Planner (opus) produces a strategy from the task's user intent + domain, then the executor
-(NativeHarnessAgent subclass) runs the tool-call loop with the strategy prepended to its
-instruction. Single-primary executor preserved (user-sim conversation ownership unchanged) —
-the pipeline is planner-then-execute, NOT multi-agent-in-loop (that's the τ³ architectural limit).
+"""Evaluate a planner followed by a tool-using executor on retail tasks.
 
-argv: <genotype: single-opus|opus->opus|opus->haiku> <task-index> <domain> <max-steps>
-Prints: BRIDGE_RESULT: {"reward":..,"cost":..,"success":0/1}
-"""
+The planner reads the task intent and domain, then writes a strategy. The
+executor receives that strategy and handles the conversation and tool calls.
+The runner reports a BRIDGE_RESULT record with reward, cost, and success.
+
+Arguments are the agent setup name, task index, domain, and step limit."""
 import sys, os, json, argparse
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from phase2.tau3_robust_proxy import install_robust_completion

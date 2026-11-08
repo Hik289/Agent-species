@@ -1,26 +1,8 @@
-"""M5 anchor_4: single-niche negative control (per Thm 3).
+"""Run a population control with one planning task group.
 
-Setup:
-  - founder_v1, N=16, T=20, 1 seed (per author reframe)
-  - Single niche: PlanBench blocksworld only
-  - No assortative mating (β=0), no migration, random parent selection
-  - Force fix communication schema, freeze schema versions (no interface drift)
-  - mu = 0.05 (default founder), but exclude mutation ops that change communication / schema
-    (per Thm 3 Assumption 6: no interface drift)
-  - eval_every = 5 gens (so RCM checked at t = 5, 10, 15, 20)
-  - λ_c = 0.5
-
-Abort criterion:
-  - If at any RCC time-point RII_mean > 0.10, log a warning.
-  - If RII > 0.10 persists for ≥ 3 consecutive RCC time-points (3 × 5 = 15 gen),
-    flag GA.M5.CRITICAL = TRUE.
-  - orchestrator receives the flag and decides whether to ABORT the entire LLM line.
-
-Total expected cost: ~$0.50–$2 (single niche, small N×T, but each LLM call is ~$0.0007).
-With RCM eval R=4 every 5 gens: 4 × 16×17/2 = 544 hybrid evals × 4 RCC time-points = 2176 hybrid
-+ population eval per gen (16 agent × 20 gen = 320 evals).
-Total ≈ 2496 LLM calls × $0.0007 ≈ $1.75.
-"""
+Agents use random parent selection and fixed communication schemas. The runner
+evaluates new agents at checkpoints and records whether the population splits
+into groups whose members combine more successfully within each group."""
 from __future__ import annotations
 
 import argparse

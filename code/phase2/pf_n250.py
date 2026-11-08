@@ -1,7 +1,9 @@
-"""de-truncation n=250 pooled (valid_seen held-out + valid_unseen), seen/unseen labeled.
-Uses the de-truncation+memory-fix mechanism (pipeline_fix.run_pipeline_fixed mode A = full context).
-argv: <genotype> <n>
-"""
+"""Evaluate a planner–executor pair on seen and unseen ALFWorld tasks.
+
+The executor receives the full plan and recent action outcomes. Saved results
+include each task's outcome, cost, and seen or unseen split.
+
+Arguments are the agent setup name and task count."""
 import sys, json, math
 sys.path.insert(0, ".")
 from phase0.eval_harness import get_tasks, make_task

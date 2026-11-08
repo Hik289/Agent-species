@@ -1,19 +1,8 @@
-"""M2 anchor_1 driver: founder MAG calibration on PlanBench BW + LG.
+"""Measure the starting agent on PlanBench and test crosses of its copies.
 
-
-  - M2.1: founder PlanBench 50 task (BW 25 + LG 25), 5 reps each → fitness mean ± std
-  - M2.3: founder self-cross calibration: paired self-cross hybrid with R=8 per pair,
-    8 founder clones → C(8,2)*2 reciprocal = 56 unique pairs * R=8 hybrids = 448 hybrids
-    each evaluated on a 10-task PlanBench subset → 4480 task eval ≈ $10
-  - M2.4: lock τ_v at the largest threshold where ≥ 70% of self-cross hybrids viable
-  - M2.5: write experiments/calibration.json
-
-GA.M2 abort gates:
-  - founder PlanBench success < 60% on 50 task → upstream
-  - founder self-cross viability < 70% at any τ_v → upstream
-  - OpenAI-compatible API spend > $30 → halt
-  - per-task wallclock > 30s avg → upstream
-"""
+Repeated Blocksworld and Logistics tasks measure planning quality. Crosses of
+founder copies estimate how often new agents pass the quality threshold. The
+runner saves the calibration and stops when configured checks or budgets fail."""
 from __future__ import annotations
 
 import argparse

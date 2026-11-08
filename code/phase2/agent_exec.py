@@ -1,16 +1,8 @@
-"""Phase 2 agent executor under same-X protocol (author 2026-07-26).
+"""Run an agent using shared task settings.
 
-Runs a genotype (role→model + HARNESS + topology) on a task, but the 5 same-X fixed
-items come from the SameXProtocol, NOT the genotype:
-  - max_turns  ← protocol (identical for all compositions)
-  - token_budget ← protocol (enforced by _TaskMeter)
-  - prompt template ← protocol (identical baseline framing)
-  - tools ← benchmark's native set (identical)
-  - repository/env ← benchmark task (identical, fixed seed)
-
-Only harness (react/cot/direct/reflexion), model, and topology vary. This isolates the
-harness co-evolution effect: fair on everything except the thing we claim must co-adapt.
-"""
+The task protocol supplies tools, prompts, turn limits, and token budgets.
+The agent setup supplies model choices, execution methods, and the connections
+between roles. Each model call is charged to the task budget."""
 from __future__ import annotations
 
 import re
@@ -21,9 +13,7 @@ from phase2.samex_protocol import DEFAULT_PROTOCOL
 
 import os as _os
 import time as _time
-# Optional proactive throttle for Claude opus/sonnet multi-turn (orchestrator 2026-08-05: serial
-# + spacing avoids the proxy rate-limit; env AGENTSPECIES_CLAUDE_THROTTLE_S sets inter-call
-# sleep, default 0). Belt-and-suspenders with the system→user merge (_build_msgs).
+# AGENTSPECIES_CLAUDE_THROTTLE_S sets the pause between Opus or Sonnet calls.
 _CLAUDE_THROTTLE = float(_os.environ.get("AGENTSPECIES_CLAUDE_THROTTLE_S", "0"))
 
 
